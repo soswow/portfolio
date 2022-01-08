@@ -1,0 +1,63 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "main": "dist/es5/index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "css-loader": "^6.5.1",
+    "node-polyfill-webpack-plugin": "^1.1.4",
+    "style-loader": "^3.3.1",
+    "ts-react-toolbox": "^1.1.11",
+    "webpack": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=8.5.0"
+  },
+  "scripts": {
+    "bootstrap": "ts-react-toolbox init",
+    "dev": "node dev.js",
+    "test": "ts-react-toolbox test",
+    "test:ci": "ts-react-toolbox test --runInBand --coverage",
+    "build-and-publish": "node build-and-publish.js",
+    "build": "ts-react-toolbox build",
+    "release": "ts-react-toolbox release",
+    "lint": "ts-react-toolbox lint",
+    "static": "ts-react-toolbox publish",
+    "format": "ts-react-toolbox format",
+    "analyze": "ts-react-toolbox analyze"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.7.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "jsnext:main": "dist/es2015/index.js",
+  "module": "dist/es2015/index.js",
+  "types": "dist/es5/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "keywords": [],
+  "repository": "",
+  "dependencies": {
+    "@atlaskit/css-reset": "^6.3.4",
+    "@atlaskit/media-card": "^73.0.0",
+    "@atlaskit/media-client": "^14.3.2",
+    "@atlaskit/media-core": "^32.2.0",
+    "@atlaskit/page": "^12.1.0",
+    "@atlaskit/tabs": "^13.2.4",
+    "@atlaskit/theme": "^12.1.0",
+    "@emotion/react": "^11.7.1",
+    "eslint": "^8",
+    "eslint-plugin-react-hooks": "^4",
+    "gh-pages": "^3.2.3",
+    "jest": "^27",
+    "react": "^16",
+    "react-dom": "^16",
+    "react-gh-corner": "^1.1.2",
+    "react-intl": "^2.6",
+    "react-intl-next": "npm:react-intl@^5.18.1",
+    "rxjs": "^5.5.0",
+    "styled-components": "^3.3.2"
+  }
+}
