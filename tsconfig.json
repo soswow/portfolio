@@ -15,11 +15,14 @@
     "removeComments": true,
     "importHelpers": true,
     "resolveJsonModule": true, //already there
+    "sourceMap": true,
     "target": "es5",
     "lib": [
       "dom",
       "es5",
       "scripthost",
+      "ES2015.Promise",
+      "es2015.core",
       "es2015.collection",
       "es2015.symbol",
       "es2015.iterable",

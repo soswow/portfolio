@@ -1,35 +1,38 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/react";
-// import { useState, useEffect } from 'react';
+import { css, jsx } from "@emotion/react";
+import { useState } from "react";
+import { ProjectPage } from "./project-page";
+import { ProjectThumbnail } from './project-thumbnail';
 
-import {MediaClientConfig, ClientBasedAuth} from '@atlaskit/media-core';
-import { FileIdentifier } from '@atlaskit/media-client';
-import { Card } from '@atlaskit/media-card';
-
-const getToken = async ()  => {
-    const response = await fetch('https://tn43tw97s3.execute-api.ap-southeast-2.amazonaws.com/default/media-token-generator');
-    const data = await response.json();
-    return data.token;
+// interface Props {
+// }
+interface Project {
+    name: string
 }
 
-const config: MediaClientConfig = {
-    authProvider: async () => {
-        const token = await getToken();
-        const auth: ClientBasedAuth = {
-            baseUrl: 'https://api.media.atlassian.com',
-            clientId: '6d232289-1813-4dfd-b652-2d5a83e3bd6c',
-            token
-        };
-        return auth;
-    }
-}
+const projectList: Project[] = [
+    {
+        name: 'mandalorian-helmet',
+    },
+]
+
+
+const imagesCountainerStyle = css`
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+`;
 
 export const PortfolioPage = () => {
-    const fileId: FileIdentifier = {
-        mediaItemType: 'file',
-        id: '03a510de-b4fe-4f66-8bbb-3a014ff3bbba',
-        collectionName: 'books',
-      };
+    const [openedProject, setOpenedProject] = useState<string | null>(null);
 
-    return <div>Portfolio Page ... token is -   <Card mediaClientConfig={config} identifier={fileId} shouldOpenMediaViewer={true} /></div>;
+    const listing = <div css={imagesCountainerStyle}>
+        {projectList.map(({ name }) => <ProjectThumbnail key={name} projectName={name} onSelect={() => setOpenedProject(name)} />)}
+    </div>
+
+    if (openedProject) {
+        return <ProjectPage projectName={openedProject} onBack={() => setOpenedProject(null)} />
+    } else {
+        return listing;
+    }
 }

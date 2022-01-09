@@ -74,7 +74,7 @@
     "@babel/runtime" "^7.0.0"
     "@emotion/core" "^10.0.9"
 
-"@atlaskit/button@^16.0.0", "@atlaskit/button@^16.1.0":
+"@atlaskit/button@^16.0.0", "@atlaskit/button@^16.1.0", "@atlaskit/button@^16.1.4":
   version "16.1.4"
   resolved "https://registry.yarnpkg.com/@atlaskit/button/-/button-16.1.4.tgz#6de15feca8a01120d653b7a06861f76969347035"
   integrity sha512-Qb77S6iVIHBli7eKWRoMl9gmcOCvu+RQcsq8/cmcy0e4jBONodZoMbiOFTbHHcgm9fv7Li0kq5aXT6MDHXhsQA==
@@ -516,7 +516,7 @@
     react-uid "^2.2.0"
     shallow-equal "^1.0.0"
 
-"@atlaskit/spinner@^15.0.0", "@atlaskit/spinner@^15.1.0":
+"@atlaskit/spinner@^15.0.0", "@atlaskit/spinner@^15.1.0", "@atlaskit/spinner@^15.1.4":
   version "15.1.4"
   resolved "https://registry.yarnpkg.com/@atlaskit/spinner/-/spinner-15.1.4.tgz#0e7eb1f34f055c31caac2bb3f7ec2108c203de19"
   integrity sha512-aoi6e9DwiDJkf8aZW+gZ6krW1DxeNRh81NRFC2p3Q/wGksRgMaOtdHeRnciugVqVaGZyEU98cZ4CgJZacLLkDQ==
