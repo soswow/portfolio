@@ -7,8 +7,8 @@
     "strictFunctionTypes": true,
     "noImplicitThis": true,
     "alwaysStrict": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false, // Change me back
+    "noUnusedParameters": false, // Change me back
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
