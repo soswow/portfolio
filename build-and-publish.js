@@ -38,7 +38,7 @@ const build = async () => {
         }
     });
     console.log('Creating build 📦');
-    await new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         compiler.run((_, stats) => {
             console.log('hasErrors', stats.hasErrors());
             console.log(stats.toString());
@@ -73,5 +73,4 @@ const publish = async (distPath) => {
 }
 
 
-// build().then(publish).then(() => console.log('done'));
-publish('/Users/sasha/hobby/portfolio/website/publish_dist');
+build().then(publish).then(() => console.log('done'));

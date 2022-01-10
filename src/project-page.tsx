@@ -31,7 +31,7 @@ export const ProjectPage = ({ projectName, onBack }: Props) => {
     const loadItems = async () => {
         const collectionItems = await getCollectionItems(projectName);
         collectionItems.sort((a, b) => a.details.name > b.details.name ? 1 : a.details.name < b.details.name ? -1 : 0);
-        const coverIndex = collectionItems.findIndex((item) => item.details.name.startsWith('cover'));
+        const coverIndex = collectionItems.findIndex((item) => item.details.name.indexOf('cover') > -1);
         if (coverIndex > -1) {
             setCoverItem(collectionItems.splice(coverIndex, 1)[0]);
         }

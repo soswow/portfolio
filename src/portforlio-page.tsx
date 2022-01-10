@@ -14,8 +14,10 @@ const projectList: Project[] = [
     {
         name: 'mandalorian-helmet',
     },
+    {
+        name: 'halo-plasma-blaster',
+    },
 ]
-
 
 const imagesCountainerStyle = css`
     display: flex;
@@ -23,11 +25,18 @@ const imagesCountainerStyle = css`
     width: 600px;
 `;
 
+const thumbnailStyle = css`
+    padding: 5px;
+`;
+
 export const PortfolioPage = () => {
     const [openedProject, setOpenedProject] = useState<string | null>(null);
 
     const listing = <div css={imagesCountainerStyle}>
-        {projectList.map(({ name }) => <ProjectThumbnail key={name} projectName={name} onSelect={() => setOpenedProject(name)} />)}
+        {projectList.map(({ name }) => 
+        <div css={thumbnailStyle}>
+            <ProjectThumbnail key={name} projectName={name} onSelect={() => setOpenedProject(name)} />
+        </div>)}
     </div>
 
     if (openedProject) {

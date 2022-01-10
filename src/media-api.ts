@@ -33,7 +33,7 @@ export const getCollectionItems = async (collectionName: string): Promise<MediaC
     if (!collectionCache[collectionName]) {
         await new Promise((resolve) => {
             mediaClient.mediaStore.getCollectionItems(collectionName,
-                { limit: 50, details: 'full' }
+                { limit: 100, details: 'minimal' }
             )
                 .then(({ data: items }) => {
                     collectionCache[collectionName] = items.contents;
@@ -47,6 +47,6 @@ export const getCollectionItems = async (collectionName: string): Promise<MediaC
 
 export const findProjectCover = async (projectName: string): Promise<MediaCollectionItem> => {
     const items = await getCollectionItems(projectName);
-    return items.find((item: MediaCollectionItem) => item.details.name.startsWith('cover')) || items[0];
+    return items.find((item: MediaCollectionItem) => item.details.name.indexOf('cover') > -1) || items[0];
 }
 
