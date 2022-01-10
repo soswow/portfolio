@@ -1,46 +1,34 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react";
 import { useState } from "react";
+import { Project } from "./types";
+import { projectList } from "./data";
 import { ProjectPage } from "./project-page";
 import { ProjectThumbnail } from './project-thumbnail';
 
-// interface Props {
-// }
-interface Project {
-    name: string
-}
-
-const projectList: Project[] = [
-    {
-        name: 'mandalorian-helmet',
-    },
-    {
-        name: 'halo-plasma-blaster',
-    },
-]
 
 const imagesCountainerStyle = css`
     display: flex;
     flex-wrap: wrap;
-    width: 600px;
+    width: 915px;
 `;
 
 const thumbnailStyle = css`
-    padding: 5px;
+    padding: 5px 5px 0 0;
 `;
 
 export const PortfolioPage = () => {
-    const [openedProject, setOpenedProject] = useState<string | null>(null);
+    const [openedProject, setOpenedProject] = useState<Project | null>(null);
 
     const listing = <div css={imagesCountainerStyle}>
-        {projectList.map(({ name }) => 
+        {projectList.map(project => 
         <div css={thumbnailStyle}>
-            <ProjectThumbnail key={name} projectName={name} onSelect={() => setOpenedProject(name)} />
+            <ProjectThumbnail key={project.name} project={project} onSelect={() => setOpenedProject(project)} />
         </div>)}
     </div>
 
     if (openedProject) {
-        return <ProjectPage projectName={openedProject} onBack={() => setOpenedProject(null)} />
+        return <ProjectPage project={openedProject} onBack={() => setOpenedProject(null)} />
     } else {
         return listing;
     }

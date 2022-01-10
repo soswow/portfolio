@@ -238,7 +238,7 @@
     "@atlaskit/select" "^15.0.0"
     "@babel/runtime" "^7.0.0"
 
-"@atlaskit/lozenge@^11.1.0":
+"@atlaskit/lozenge@^11.1.0", "@atlaskit/lozenge@^11.1.4":
   version "11.1.4"
   resolved "https://registry.yarnpkg.com/@atlaskit/lozenge/-/lozenge-11.1.4.tgz#7d03d720f807d44f99ade9c6e6516b0d84d219fe"
   integrity sha512-wrCUzPWQZDZ6trCmy8VGKUWay/EsYNnKtUygW8hwE+Fr7tpNY2kD2CQY6xZtvFoltEf+npcwlQmr5FOUDFBGgg==
@@ -533,6 +533,27 @@
   dependencies:
     "@atlaskit/analytics-next" "^8.2.0"
     "@atlaskit/codemod-utils" "^3.4.0"
+    "@atlaskit/theme" "^12.0.0"
+    "@atlaskit/tokens" "^0.4.0"
+    "@babel/runtime" "^7.0.0"
+    "@emotion/core" "^10.0.9"
+
+"@atlaskit/tag-group@^10.0.10":
+  version "10.0.10"
+  resolved "https://registry.yarnpkg.com/@atlaskit/tag-group/-/tag-group-10.0.10.tgz#bdd05a070e8067399e29860047827ebd5d487b45"
+  integrity sha512-fKpcLJsIBWxT3VQ+G2D5JtWszaz5kaPKi25p3VpskLWuEPMhJowSSr0+AzbisB0vjfp0+IChHntYMqx3CObxVw==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    "@emotion/core" "^10.0.9"
+
+"@atlaskit/tag@^11.2.2":
+  version "11.2.2"
+  resolved "https://registry.yarnpkg.com/@atlaskit/tag/-/tag-11.2.2.tgz#d93573f8b567ef6f48aa56c49c95ae21bbe7e79f"
+  integrity sha512-WiO6a+YAIv8RsYB1LckjD9F0hTUW9pmhw+eKkSah59lIZ+ie0++36OlLdvjkIWcp+QknojULpOqrDcgpdJTkug==
+  dependencies:
+    "@atlaskit/analytics-next" "^8.0.0"
+    "@atlaskit/icon" "^21.9.0"
+    "@atlaskit/motion" "^1.0.0"
     "@atlaskit/theme" "^12.0.0"
     "@atlaskit/tokens" "^0.4.0"
     "@babel/runtime" "^7.0.0"

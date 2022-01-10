@@ -8,6 +8,7 @@ import { MediaViewerDataSource } from '@atlaskit/media-viewer';
 
 import { config, getCollectionItems } from './media-api';
 import { useEffect, useState } from "react";
+import { Project } from "./types";
 
 const singleImageStyle = css`
 
@@ -20,16 +21,19 @@ const imagesCountainerStyle = css`
 `;
 
 interface Props {
-    projectName: string;
+    project: Project;
     onBack: () => void;
 }
 
-export const ProjectPage = ({ projectName, onBack }: Props) => {
+export const ProjectPage = ({ project: {
+    name,
+    title,
+}, onBack }: Props) => {
     const [coverItem, setCoverItem] = useState<MediaCollectionItem | null>(null);
     const [items, setItems] = useState<MediaCollectionItem[]>([]);
 
     const loadItems = async () => {
-        const collectionItems = await getCollectionItems(projectName);
+        const collectionItems = await getCollectionItems(name);
         collectionItems.sort((a, b) => a.details.name > b.details.name ? 1 : a.details.name < b.details.name ? -1 : 0);
         const coverIndex = collectionItems.findIndex((item) => item.details.name.indexOf('cover') > -1);
         if (coverIndex > -1) {
@@ -41,7 +45,7 @@ export const ProjectPage = ({ projectName, onBack }: Props) => {
     const getFileIdentifier = (id: string): FileIdentifier => ({
         mediaItemType: 'file',
         id,
-        collectionName: projectName,
+        collectionName: name,
     });
 
     useEffect(() => {
@@ -49,7 +53,7 @@ export const ProjectPage = ({ projectName, onBack }: Props) => {
     }, [])
 
     const mediaViewerDataSource: MediaViewerDataSource = {
-        collectionName: projectName,
+        collectionName: name,
         list: items.map(item => getFileIdentifier(item.id))
     }
 
