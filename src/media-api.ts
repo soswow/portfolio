@@ -47,6 +47,6 @@ export const getCollectionItems = async (collectionName: string): Promise<MediaC
 
 export const findProjectCover = async (projectName: string): Promise<MediaCollectionItem> => {
     const items = await getCollectionItems(projectName);
-    return items.find((item: MediaCollectionItem) => item.details.name.indexOf('cover') > -1) || items[0];
+    return items.find((item: MediaCollectionItem) => item.details.name.toLocaleLowerCase().indexOf('cover') > -1) || items[0];
 }
 

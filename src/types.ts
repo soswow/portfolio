@@ -15,6 +15,11 @@ export const statusToLozengeAppearanceMap: Record< Status, ThemeAppearance> = {
     'Done': 'success',
     'WIP': 'inprogress',
 }
+export interface Part{
+    name: string;
+    title?: string;
+    description?: string[];
+}
 
 export interface Project {
     name: string;
@@ -22,4 +27,6 @@ export interface Project {
     skills: Skill[];
     status: Status;
     shortSummary: string;
+    description?: string[];
+    parts: Part[];
 }

@@ -40,6 +40,7 @@
   "keywords": [],
   "repository": "",
   "dependencies": {
+    "@atlaskit/breadcrumbs": "^11.5.0",
     "@atlaskit/button": "^16.1.4",
     "@atlaskit/css-reset": "^6.3.4",
     "@atlaskit/lozenge": "^11.1.4",
@@ -47,6 +48,7 @@
     "@atlaskit/media-client": "^14.3.2",
     "@atlaskit/media-core": "^32.2.0",
     "@atlaskit/page": "^12.1.0",
+    "@atlaskit/page-header": "^10.2.2",
     "@atlaskit/spinner": "^15.1.4",
     "@atlaskit/tabs": "^13.2.4",
     "@atlaskit/tag": "^11.2.2",

@@ -6,11 +6,12 @@ import { Card } from '@atlaskit/media-card';
 import { colors } from "@atlaskit/theme";
 import Tag, { SimpleTag } from '@atlaskit/tag';
 import TagGroup from '@atlaskit/tag-group';
+import Spinner from '@atlaskit/spinner';
+import Lozenge from '@atlaskit/lozenge';
 
 import { config, findProjectCover } from './media-api';
-import Spinner from '@atlaskit/spinner';
 import { Project, statusToLozengeAppearanceMap } from "./types";
-import Lozenge from '@atlaskit/lozenge';
+
 
 interface Props {
     project: Project;
@@ -103,7 +104,7 @@ export const ProjectThumbnail = ({project: {
         
         <div css={titleRowStyle}>
             <h3>{title}</h3>
-            <Lozenge appearance={statusToLozengeAppearanceMap[status]} isBold={status === 'Done'} >{status}</Lozenge>    
+            <Lozenge appearance={statusToLozengeAppearanceMap[status]} isBold={status === 'Done'} >{status}</Lozenge>
         </div>
         <p>{shortSummary}</p>
         <div css={tagGroupWrapperStyle}>
