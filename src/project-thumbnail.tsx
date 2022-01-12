@@ -8,6 +8,9 @@ import Tag, { SimpleTag } from '@atlaskit/tag';
 import TagGroup from '@atlaskit/tag-group';
 import Spinner from '@atlaskit/spinner';
 import Lozenge from '@atlaskit/lozenge';
+import CommentIcon from '@atlaskit/icon/glyph/comment';
+import Badge from '@atlaskit/badge';
+import { CommentCount } from 'disqus-react';
 
 import { config, findProjectCover } from './media-api';
 import { Project, statusToLozengeAppearanceMap } from "./types";
@@ -63,15 +66,20 @@ const tagGroupWrapperStyle = css`
     margin-top: 15px;
 `;
 
-export const ProjectThumbnail = ({project: {
+const badgesStyle = css`
+    display: flex;
+    align-items: center;
+`
+
+export const ProjectThumbnail = ({ project: {
     name,
     title,
     status,
     skills,
     shortSummary
-}, onSelect}: Props) => {
+}, onSelect }: Props) => {
     const [coverItem, setCoverItem] = useState<MediaCollectionItem | null>(null);
-    
+
     const fetchCoverItem = async () => {
         setCoverItem(await findProjectCover(name));
     }
@@ -85,11 +93,11 @@ export const ProjectThumbnail = ({project: {
     useEffect(() => {
         fetchCoverItem();
     })
-    
+
     return <div css={wrapperStyle}>
-        {coverItem ? 
+        {coverItem ?
             <div css={cardWrapper}>
-                <Card 
+                <Card
                     mediaClientConfig={config}
                     identifier={getFileIdentifier(coverItem.id)}
                     onClick={() => onSelect()}
@@ -101,7 +109,7 @@ export const ProjectThumbnail = ({project: {
                 />
             </div>
             : <div css={cardPreloaderWrapper}><Spinner /></div>}
-        
+
         <div css={titleRowStyle}>
             <h3>{title}</h3>
             <Lozenge appearance={statusToLozengeAppearanceMap[status]} isBold={status === 'Done'} >{status}</Lozenge>
@@ -111,6 +119,18 @@ export const ProjectThumbnail = ({project: {
             <TagGroup>
                 {skills.map(skill => <SimpleTag key={skill} text={skill} />)}
             </TagGroup>
+        </div>
+        <div css={badgesStyle}>
+        <CommentIcon label="comment-count" /><Badge><CommentCount
+            shortname='sashas-portfolio'
+            config={
+                {
+                    url: `${location.origin}/things/${name}`,
+                    identifier: `things-${name}`,
+                    title
+                }
+            }
+        /></Badge>
         </div>
     </div>;
 }

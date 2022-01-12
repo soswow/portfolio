@@ -2,7 +2,6 @@
 import { css, jsx } from "@emotion/react";
 import { FileIdentifier, MediaCollectionItem } from '@atlaskit/media-client';
 import { Card } from '@atlaskit/media-card';
-import Button from '@atlaskit/button';
 import Spinner from '@atlaskit/spinner';
 import { MediaViewerDataSource } from '@atlaskit/media-viewer';
 import Tag, { SimpleTag } from '@atlaskit/tag';
@@ -11,10 +10,13 @@ import Lozenge from '@atlaskit/lozenge';
 import Breadcrumbs, { BreadcrumbsItem } from '@atlaskit/breadcrumbs';
 import PageHeader from '@atlaskit/page-header';
 import { colors } from "@atlaskit/theme";
+import { DiscussionEmbed } from 'disqus-react';
 
+import { projectList } from "./data";
 import { config, getCollectionItems } from './media-api';
 import { useEffect, useState } from "react";
-import { Project, statusToLozengeAppearanceMap } from "./types";
+import { statusToLozengeAppearanceMap } from "./types";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 const singleImageStyle = css`
 
@@ -62,22 +64,27 @@ const coverImageStyle = css`
     margin-top: 15px;
 `;
 
-interface Props {
-    project: Project;
-    onBack: () => void;
-}
-
-export const ProjectPage = ({ project: {
-    name,
-    title,
-    shortSummary,
-    description = [],
-    parts,
-    skills,
-    status,
-}, onBack }: Props) => {
+export const ProjectPage = () => {
     const [coverItem, setCoverItem] = useState<MediaCollectionItem | null>(null);
     const [items, setItems] = useState<MediaCollectionItem[]>([]);
+    const { projectName } = useParams();
+    const navigate = useNavigate();
+
+    const project = projectList.find(({ name }) => name === projectName);
+    
+    if (!project) {
+        return <Navigate to={'/things'} />;
+    }
+    
+    const {
+        name,
+        title,
+        shortSummary,
+        description = [],
+        parts,
+        skills,
+        status,
+    } = project;
 
     const loadItems = async () => {
         const collectionItems = await getCollectionItems(name);
@@ -110,7 +117,7 @@ export const ProjectPage = ({ project: {
 
     const breadcrumbs = (
         <Breadcrumbs>
-            <BreadcrumbsItem text="Things I've made" onClick={onBack} />
+            <BreadcrumbsItem text="Things I've made" onClick={() => navigate('/things')} />
             <BreadcrumbsItem text={title} />
         </Breadcrumbs>
     );
@@ -123,51 +130,61 @@ export const ProjectPage = ({ project: {
             </div>
         </PageHeader>
 
-        <p>{description.length > 0 && description.map(paragraph => <p>{paragraph}</p>) || shortSummary}</p>
+        {description.length > 0 && description.map((paragraph, i) => <p key={i}>{paragraph}</p>) || shortSummary}
         <div css={tagGroupWrapperStyle}>
             Skills applied: <TagGroup>
                 {skills.map(skill => <SimpleTag key={skill} text={skill} />)}
             </TagGroup>
         </div>
-        
+
         <div css={coverImageStyle}>
-        {
-            !coverItem ?
-                <div css={coverCardPreloaderWrapper}><Spinner /></div> :
-                <Card
-                    mediaClientConfig={config}
-                    mediaViewerDataSource={mediaViewerDataSource}
-                    identifier={getFileIdentifier(coverItem.id)}
-                    disableOverlay={true}
-                    shouldOpenMediaViewer={true}
-                    dimensions={{
-                        width: 900,
-                        height: 500
-                    }}
-                />
-        }
+            {
+                !coverItem ?
+                    <div css={coverCardPreloaderWrapper}><Spinner /></div> :
+                    <Card
+                        mediaClientConfig={config}
+                        mediaViewerDataSource={mediaViewerDataSource}
+                        identifier={getFileIdentifier(coverItem.id)}
+                        disableOverlay={true}
+                        shouldOpenMediaViewer={true}
+                        dimensions={{
+                            width: 900,
+                            height: 500
+                        }}
+                    />
+            }
         </div>
-        
-        {parts.map(({name: partName, title, description = []}) => <div css={partSectionStyle}>
+
+        {parts.map(({ name: partName, title, description = [] }) => <div css={partSectionStyle}>
             <h2>{title || partName}</h2>
             {description.map(paragraph => <p>{paragraph}</p>)}
 
             <div css={imagesCountainerStyle}>
-            {items.filter(({details: {name: itemFileName}}) => itemFileName.indexOf(partName) > -1).map(item =>
-                <div css={singleImageStyle} key={item.id}>
-                    <Card
-                        mediaClientConfig={config}
-                        identifier={getFileIdentifier(item.id)}
-                        shouldOpenMediaViewer={true}
-                        mediaViewerDataSource={mediaViewerDataSource}
-                        disableOverlay={true}
-                        dimensions={{
-                            width: 295,
-                            height: 295
-                        }}
-                    />
-                </div>)}
+                {items.filter(({ details: { name: itemFileName } }) => itemFileName.indexOf(partName) > -1).map(item =>
+                    <div css={singleImageStyle} key={item.id}>
+                        <Card
+                            mediaClientConfig={config}
+                            identifier={getFileIdentifier(item.id)}
+                            shouldOpenMediaViewer={true}
+                            mediaViewerDataSource={mediaViewerDataSource}
+                            disableOverlay={true}
+                            dimensions={{
+                                width: 295,
+                                height: 295
+                            }}
+                        />
+                    </div>)}
             </div>
         </div>)}
+        <DiscussionEmbed
+            shortname='sashas-portfolio'
+            config={
+                {
+                    url: location.href,
+                    identifier: `things-${name}`,
+                    title
+                }
+            }
+        />
     </div>;
 }

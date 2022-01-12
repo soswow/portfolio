@@ -1,7 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { BrowserRouter } from "react-router-dom";
 import '@atlaskit/css-reset';
 
-import App from './app';
+import { PortfolioWebsite } from '../src';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<BrowserRouter><PortfolioWebsite /></BrowserRouter>, document.getElementById('app'));

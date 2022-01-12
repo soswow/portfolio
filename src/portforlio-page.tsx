@@ -1,13 +1,10 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react";
-import { useState } from "react";
 import PageHeader from '@atlaskit/page-header';
 
-import { Project } from "./types";
-import { projectList } from "./data";
-import { ProjectPage } from "./project-page";
 import { ProjectThumbnail } from './project-thumbnail';
-
+import { useNavigate, useParams } from "react-router-dom";
+import { projectList } from "./data";
 
 const imagesCountainerStyle = css`
     display: flex;
@@ -26,24 +23,21 @@ const thumbnailStyle = css`
 `;
 
 export const PortfolioPage = () => {
-    const [openedProject, setOpenedProject] = useState<Project | null>(null);
+    const navigate = useNavigate();
+    const { projectName } = useParams();
 
-    const listing = <div css={listingPageStyle}>
-        <PageHeader>
-            Things I've made
-        </PageHeader>
-        <p>Here is a list of projects I've been working over past years. Feel free to click and explore each of them.</p>
-        <div css={imagesCountainerStyle}>
-            {projectList.map(project => 
-            <div css={thumbnailStyle}>
-                <ProjectThumbnail key={project.name} project={project} onSelect={() => setOpenedProject(project)} />
-            </div>)}
-        </div>
-    </div>;
-
-    if (openedProject) {
-        return <ProjectPage project={openedProject} onBack={() => setOpenedProject(null)} />
-    } else {
-        return listing;
-    }
+    return (
+        <div css={listingPageStyle}>
+                <PageHeader>
+                    Things I've made
+                </PageHeader>
+                <p>Here is a list of projects I've been working over past years. Feel free to click and explore each of them.</p>
+                <div css={imagesCountainerStyle}>
+                    {projectList.map(project =>
+                        <div css={thumbnailStyle}>
+                            <ProjectThumbnail key={project.name} project={project} onSelect={() => navigate(`/things/${project.name}`)} />
+                        </div>)}
+                </div>
+            </div>
+    );
 }
