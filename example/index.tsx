@@ -5,4 +5,5 @@ import '@atlaskit/css-reset';
 
 import { PortfolioWebsite } from '../src';
 
-ReactDOM.render(<BrowserRouter><PortfolioWebsite /></BrowserRouter>, document.getElementById('app'));
+const basename = location.host === 'soswow.github.io' ? '/portfolio' : '';
+ReactDOM.render(<BrowserRouter basename={basename}><PortfolioWebsite /></BrowserRouter>, document.getElementById('app'));
