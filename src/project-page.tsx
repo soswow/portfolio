@@ -4,7 +4,7 @@ import { FileIdentifier, MediaCollectionItem } from '@atlaskit/media-client';
 import { Card } from '@atlaskit/media-card';
 import Spinner from '@atlaskit/spinner';
 import { MediaViewerDataSource } from '@atlaskit/media-viewer';
-import Tag, { SimpleTag } from '@atlaskit/tag';
+import { SimpleTag } from '@atlaskit/tag';
 import TagGroup from '@atlaskit/tag-group';
 import Lozenge from '@atlaskit/lozenge';
 import Breadcrumbs, { BreadcrumbsItem } from '@atlaskit/breadcrumbs';
@@ -17,6 +17,7 @@ import { config, getCollectionItems } from './media-api';
 import { useEffect, useState } from "react";
 import { statusToLozengeAppearanceMap } from "./types";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { URLto } from "./urlto";
 
 const singleImageStyle = css`
 
@@ -73,7 +74,7 @@ export const ProjectPage = () => {
     const project = projectList.find(({ name }) => name === projectName);
     
     if (!project) {
-        return <Navigate to={'/things'} />;
+        return <Navigate to={URLto.things} />;
     }
     
     const {
@@ -117,7 +118,7 @@ export const ProjectPage = () => {
 
     const breadcrumbs = (
         <Breadcrumbs>
-            <BreadcrumbsItem text="Things I've made" onClick={() => navigate('/things')} />
+            <BreadcrumbsItem text="Things I've made" onClick={() => navigate(URLto.things)} />
             <BreadcrumbsItem text={title} />
         </Breadcrumbs>
     );

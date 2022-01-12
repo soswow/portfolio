@@ -2,39 +2,26 @@
 import { jsx } from "@emotion/react";
 import css from "@emotion/css";
 import { colors } from '@atlaskit/theme';
-import Page from '@atlaskit/page';
-import Tabs, { Tab, TabList, TabPanel } from '@atlaskit/tabs';
 import {
   SideNavigation,
-  Section,
   NavigationHeader,
   Header,
-  NestableNavigationContent,
-  ButtonItem,
-  NestingItem,
-  Footer,
-  NavigationFooter,
   NavigationContent,
-  LinkItem,
   CustomItem,
-  CustomItemProps,
   CustomItemComponentProps,
 } from '@atlaskit/side-navigation';
 import {
-  Router,
-//   BrowserRouter as Router,
   Routes,
   Route,
   Link,
   Navigate,
   useLocation,
-//   useRouteMatch
 } from "react-router-dom";
 
 import { AboutMePage } from './aboutme-page';
 import { PortfolioPage } from './portforlio-page';
-import { forwardRef } from "react";
 import { ProjectPage } from "./project-page";
+import { URLto } from "./urlto";
 
 const topCss = css`
   padding: 10px;
@@ -74,6 +61,8 @@ const RouteLink = (props: CustomProps) => {
 
 export const PortfolioWebsite = () => {
   const {pathname} = useLocation();
+  console.log(pathname);
+  
   return (
       <div css={mainWrapperStyle}>
         <div css={navWrapperStyle}>
@@ -83,17 +72,17 @@ export const PortfolioWebsite = () => {
                 <Header>Sasha's Portfolio</Header>
               </NavigationHeader>
               <NavigationContent>
-                <CustomItem component={RouteLink} href="/about-me" isSelected={pathname == '/about-me'}>About me</CustomItem>
-                <CustomItem component={RouteLink} href="/things"  isSelected={pathname == '/things'}>Things I've made</CustomItem>
+                <CustomItem component={RouteLink} href={URLto.aboutMe} isSelected={pathname.startsWith(URLto.aboutMe)}>About me</CustomItem>
+                <CustomItem component={RouteLink} href={URLto.things}  isSelected={pathname.startsWith(URLto.things)}>Things I've made</CustomItem>
               </NavigationContent>
             </SideNavigation>
           </div>
           <div>
             <Routes>
-              <Route path="/" element={<Navigate to="/things" />} />
-              <Route path="/about-me" element={<AboutMePage />} />
-              <Route path="/things" element={<PortfolioPage />} />
-              <Route path="/things/:projectName" element={<ProjectPage />} />
+              <Route path="/" element={<Navigate to={URLto.things} />} />
+              <Route path={URLto.aboutMe} element={<AboutMePage />} />
+              <Route path={URLto.things} element={<PortfolioPage />} />
+              <Route path={URLto.thing} element={<ProjectPage />} />
             </Routes>
           </div>
         </div>

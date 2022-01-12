@@ -35,7 +35,7 @@ export const PortfolioPage = () => {
                 <div css={imagesCountainerStyle}>
                     {projectList.map(project =>
                         <div css={thumbnailStyle}>
-                            <ProjectThumbnail key={project.name} project={project} onSelect={() => navigate(`/things/${project.name}`)} />
+                            <ProjectThumbnail key={project.name} project={project} />
                         </div>)}
                 </div>
             </div>

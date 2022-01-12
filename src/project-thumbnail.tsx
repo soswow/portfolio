@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { FileIdentifier, MediaCollectionItem } from '@atlaskit/media-client';
 import { Card } from '@atlaskit/media-card';
 import { colors } from "@atlaskit/theme";
-import Tag, { SimpleTag } from '@atlaskit/tag';
+import { SimpleTag } from '@atlaskit/tag';
 import TagGroup from '@atlaskit/tag-group';
 import Spinner from '@atlaskit/spinner';
 import Lozenge from '@atlaskit/lozenge';
@@ -14,11 +14,12 @@ import { CommentCount } from 'disqus-react';
 
 import { config, findProjectCover } from './media-api';
 import { Project, statusToLozengeAppearanceMap } from "./types";
+import { generatePath, useNavigate } from "react-router-dom";
+import { URLto } from "./urlto";
 
 
 interface Props {
     project: Project;
-    onSelect: () => void;
 }
 
 const wrapperStyle = css`
@@ -77,7 +78,8 @@ export const ProjectThumbnail = ({ project: {
     status,
     skills,
     shortSummary
-}, onSelect }: Props) => {
+} }: Props) => {
+    const navigate = useNavigate();
     const [coverItem, setCoverItem] = useState<MediaCollectionItem | null>(null);
 
     const fetchCoverItem = async () => {
@@ -100,7 +102,7 @@ export const ProjectThumbnail = ({ project: {
                 <Card
                     mediaClientConfig={config}
                     identifier={getFileIdentifier(coverItem.id)}
-                    onClick={() => onSelect()}
+                    onClick={() => navigate(generatePath(URLto.thing, { projectName: name }))}
                     disableOverlay={true}
                     dimensions={{
                         width: 298,
@@ -121,16 +123,16 @@ export const ProjectThumbnail = ({ project: {
             </TagGroup>
         </div>
         <div css={badgesStyle}>
-        <CommentIcon label="comment-count" /><Badge><CommentCount
-            shortname='sashas-portfolio'
-            config={
-                {
-                    url: `${location.origin}/things/${name}`,
-                    identifier: `things-${name}`,
-                    title
+            <CommentIcon label="comment-count" /><Badge><CommentCount
+                shortname='sashas-portfolio'
+                config={
+                    {
+                        url: `${location.origin}/things/${name}`,
+                        identifier: `things-${name}`,
+                        title
+                    }
                 }
-            }
-        /></Badge>
+            /></Badge>
         </div>
     </div>;
 }
