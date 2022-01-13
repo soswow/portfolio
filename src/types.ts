@@ -8,7 +8,11 @@ export type Skill =
     | 'Airbrush painting'
     | 'Chipping paint'
     | 'Stencil making'
-    | 'Weathering';
+    | 'Weathering'
+    | 'Own design'
+    | 'Vapour smoothing'
+    | 'Wood working'
+    | 'Electronics';
 
 export type Status = 'Done' | 'WIP';
 export const statusToLozengeAppearanceMap: Record< Status, ThemeAppearance> = {

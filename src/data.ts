@@ -142,4 +142,104 @@ export const projectList: Project[] = [
             },
         ]
     },
+    {
+        name: 'final-space-grays-gun',
+        title: "Gary's gun from Final Space",
+        shortSummary: "I've 3D modelled from scratch, printed and painted a gun from Final Space show.",
+        status: 'Done',
+        parts: [
+            { name: 'References' },
+            { name: 'Outline' },
+            { name: '3D Modelling' },
+            { name: '3D Printing' },
+            { name: 'Priming and Sanding' },
+            { name: 'Painting' },
+            { name: 'Result' },
+        ],
+        skills: ['3D modelling', '3D printing', 'Airbrush painting', 'Surface prep']
+    },
+    {
+        name: 'orville-pm-32',
+        title: 'PM-32 gun from Orville',
+        shortSummary: "I've 3D modelled from scratch, printed and painting a gun from Orville show.",
+        status: 'WIP',
+        parts: [
+            { name: 'References' },
+            { name: '2D outline' },
+            { name: '3D Modelling' },
+            { name: '3D Printing' },
+            { name: 'Sanding and prepping' },
+            { name: 'Painting' },
+        ],
+        skills: ['3D modelling', '3D printing', 'Airbrush painting', 'Surface prep']
+    },
+    {
+        name: 'star-track-discovery-section-31-badge',
+        title: 'Section 31 badge from Star Trek Discovery',
+        shortSummary: "I've 3D modelled from scratch, printed and painting a badge from Star Trek Discovery.",
+        status: 'Done',
+        parts: [
+            { name: 'References' },
+            { name: 'Outline' },
+            { name: '3D Modelling' },
+            { name: '3D Printing' },
+            { name: 'Priming and sanding' },
+            { name: 'Painting' },
+            { name: 'Result' },
+        ],
+        skills: ['3D modelling', '3D printing', 'Airbrush painting', 'Surface prep']
+    },
+    {
+        name: 'atlassian-christmas-ornament',
+        title: 'Atlassian themed Christmas tree ornament',
+        shortSummary: "This was very special present for two important people.",
+        status: 'Done',
+        parts: [
+            { name: '3D Modelling' },
+            { name: '3D Printing' },
+            { name: 'Aceton vapour smoothing' },
+            { name: 'Masking and glitter' },
+            { name: 'Masking and glitter' },
+            {
+                name: 'Packeging',
+                title: 'Packaging'
+            },
+            { name: 'Result' },
+        ],
+        skills: ['3D modelling', 'Own design', '3D printing', 'Surface prep', 'Vapour smoothing']
+    },
+    {
+        name: 'emergency-beard-trimmer',
+        title: 'Emergency Beard trimmer',
+        shortSummary: "This was a joke present to someone who is letting his beard go loose for too much.",
+        status: 'Done',
+        parts: [
+            { name: 'Idea Sketch' },
+            { name: 'Trimmer size measurment' },
+            { name: '3D Modelling' },
+            { name: 'Aceton vapour smoothing' },
+            { name: 'Dry fit' },
+            { name: 'Tools making' },
+
+            { name: 'Box contruction' },
+
+            { name: 'Glass cutting' },
+            { name: 'Sticket cutting', title: 'Sticker cutting' },
+            { name: 'Glass channel' },
+
+            { name: 'Embedded lights' },
+
+            { name: 'Fixing a mistake' },
+
+            { name: 'Logo on trimmer' },
+            { name: 'Varnishing' },
+
+
+            { name: 'Electronics' },
+
+            { name: 'Priming and sanding' },
+            { name: 'Result' },
+        ],
+        skills: ['3D modelling', 'Own design', '3D printing', 'Vapour smoothing', 'Wood working', 'Electronics']
+    },
 ];

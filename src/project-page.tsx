@@ -64,19 +64,18 @@ const coverCardPreloaderWrapper = css`
 const coverImageStyle = css`
     margin-top: 15px;
 `;
-
+const fileNameRegexp = /^(\d{8})_(\d{6})_(.*)\..*$/;
 export const ProjectPage = () => {
-    const [coverItem, setCoverItem] = useState<MediaCollectionItem | null>(null);
     const [items, setItems] = useState<MediaCollectionItem[]>([]);
     const { projectName } = useParams();
     const navigate = useNavigate();
 
     const project = projectList.find(({ name }) => name === projectName);
-    
+
     if (!project) {
         return <Navigate to={URLto.things} />;
     }
-    
+
     const {
         name,
         title,
@@ -89,11 +88,23 @@ export const ProjectPage = () => {
 
     const loadItems = async () => {
         const collectionItems = await getCollectionItems(name);
-        collectionItems.sort((a, b) => a.details.name > b.details.name ? 1 : a.details.name < b.details.name ? -1 : 0);
-        const coverIndex = collectionItems.findIndex((item) => item.details.name.toLowerCase().indexOf('cover') > -1);
-        if (coverIndex > -1) {
-            setCoverItem(collectionItems.splice(coverIndex, 1)[0]);
-        }
+        collectionItems.sort(({ details: { name: nameA } }, { details: { name: nameB } }) => {
+            const [_, dateStrA, timeStrA, partNameA] = fileNameRegexp.exec(nameA) || [];
+            const [__, dateStrB, timeStrB, partNameB] = fileNameRegexp.exec(nameB) || [];
+
+            const partsWithCover = [{ name: 'Cover' }, ...project.parts];
+            const partAIndex = partsWithCover.findIndex(part => part.name === partNameA);
+            const partBIndex = partsWithCover.findIndex(part => part.name === partNameB);
+            if (partAIndex === -1 || partBIndex === -1) {
+                console.error("one of the part names in file doesn't match site data");
+            }
+            const partsCompare = partAIndex - partBIndex;
+            if (partsCompare !== 0) {
+                return partsCompare;
+            } else {
+                return parseInt(dateStrA + timeStrA, 10) - parseInt(dateStrB + timeStrB, 10);
+            }
+        });
         setItems(collectionItems);
     }
 
@@ -112,9 +123,9 @@ export const ProjectPage = () => {
         list: items.map(item => getFileIdentifier(item.id))
     }
 
-    if (coverItem !== null && mediaViewerDataSource.list) {
-        mediaViewerDataSource.list.unshift(getFileIdentifier(coverItem.id));
-    }
+    // if (coverItem !== null && mediaViewerDataSource.list) {
+    //     mediaViewerDataSource.list.unshift(getFileIdentifier(coverItem.id));
+    // }
 
     const breadcrumbs = (
         <Breadcrumbs>
@@ -122,6 +133,7 @@ export const ProjectPage = () => {
             <BreadcrumbsItem text={title} />
         </Breadcrumbs>
     );
+    
 
     return <div css={projectPageStyle}>
 
@@ -140,12 +152,12 @@ export const ProjectPage = () => {
 
         <div css={coverImageStyle}>
             {
-                !coverItem ?
+                items.length === 0 ?
                     <div css={coverCardPreloaderWrapper}><Spinner /></div> :
                     <Card
                         mediaClientConfig={config}
                         mediaViewerDataSource={mediaViewerDataSource}
-                        identifier={getFileIdentifier(coverItem.id)}
+                        identifier={getFileIdentifier(items[0].id)}
                         disableOverlay={true}
                         shouldOpenMediaViewer={true}
                         dimensions={{

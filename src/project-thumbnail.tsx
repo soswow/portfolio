@@ -42,7 +42,7 @@ const cardWrapper = css`
 
 const cardPreloaderWrapper = css`
     width: 298px;
-    height: 150px;
+    height: 200px;
     background: ${colors.N20};
     display: flex;
     align-items: center;
@@ -106,7 +106,7 @@ export const ProjectThumbnail = ({ project: {
                     disableOverlay={true}
                     dimensions={{
                         width: 298,
-                        height: 150,
+                        height: 200,
                     }}
                 />
             </div>
