@@ -11,6 +11,7 @@ import Lozenge from '@atlaskit/lozenge';
 import CommentIcon from '@atlaskit/icon/glyph/comment';
 import Badge from '@atlaskit/badge';
 import { CommentCount } from 'disqus-react';
+import ReactMarkdown from 'react-markdown'
 
 import { config, findProjectCover } from './media-api';
 import { Project, statusToLozengeAppearanceMap } from "./types";
@@ -116,7 +117,7 @@ export const ProjectThumbnail = ({ project: {
             <h3>{title}</h3>
             <Lozenge appearance={statusToLozengeAppearanceMap[status]} isBold={status === 'Done'} >{status}</Lozenge>
         </div>
-        <p>{shortSummary}</p>
+        <ReactMarkdown>{shortSummary}</ReactMarkdown>
         <div css={tagGroupWrapperStyle}>
             <TagGroup>
                 {skills.map(skill => <SimpleTag key={skill} text={skill} />)}

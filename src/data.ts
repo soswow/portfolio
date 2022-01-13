@@ -208,6 +208,25 @@ export const projectList: Project[] = [
         skills: ['3D modelling', 'Own design', '3D printing', 'Surface prep', 'Vapour smoothing']
     },
     {
+        name: 'led-tie',
+        title: 'Wearable programmable tie',
+        shortSummary: "Custom designed a programable LED tie that can react to music",
+        status: 'Done',
+        parts: [
+            {name: '3D Modelling'},
+            {name: '3D printing'},
+            {name: 'Rig and glueing'},
+            {name: 'Rig and soldering'},
+            {name: 'Fixing dead pixel'},
+            {name: 'Accembly'},
+            {name: 'Programming'},
+            {name: 'Testing'},
+            {name: 'Electronics'},
+            {name: 'Result'},
+        ],
+        skills: ['Own design', 'Electronics', '3D modelling', '3D printing', 'Wearable']
+    },
+    {
         name: 'emergency-beard-trimmer',
         title: 'Emergency Beard trimmer',
         shortSummary: "This was a joke present to someone who is letting his beard go loose for too much.",
@@ -219,26 +238,67 @@ export const projectList: Project[] = [
             { name: 'Aceton vapour smoothing' },
             { name: 'Dry fit' },
             { name: 'Tools making' },
-
             { name: 'Box contruction' },
-
             { name: 'Glass cutting' },
             { name: 'Sticket cutting', title: 'Sticker cutting' },
             { name: 'Glass channel' },
-
             { name: 'Embedded lights' },
-
             { name: 'Fixing a mistake' },
-
             { name: 'Logo on trimmer' },
             { name: 'Varnishing' },
-
-
             { name: 'Electronics' },
-
             { name: 'Priming and sanding' },
             { name: 'Result' },
         ],
         skills: ['3D modelling', 'Own design', '3D printing', 'Vapour smoothing', 'Wood working', 'Electronics']
     },
+    {
+        name: 'star-lord-blaster',
+        title: "Star-Lord's Quad Blaster",
+        shortSummary: "Printed and painted my own Quad Blaster.",
+        status: 'Done',
+        parts: [            
+            {name: '3D Printing'},
+            {name: 'Sanding'},
+            {name: 'Accembly'},
+            {name: 'Painting'},
+            {name: 'Chipped paint'},
+            {name: 'Stencil'},
+            {name: 'Result'},
+        ],
+        skills: ['3D printing', 'Airbrush painting', 'Chipping paint', 'Surface prep']
+    },
+    {
+        name: 'red-hr-button',
+        title: 'Big HR button',
+        shortSummary: 'It was a joke item I designed and made for fun.',
+        status: 'Done',
+        parts: [
+            {name: '3D Modelling'},
+            {name: '3D Printing'},
+            {name: 'Electronics'},
+            {name: 'Result'},
+        ],
+        skills: ['3D modelling', 'Own design', 'Electronics']
+    },
+    {
+        name: 'miniatures',
+        title: 'Various miniatures',
+        shortSummary: "Some miniatures I've painted",
+        status: 'Done',
+        parts: [
+            {name: 'Space Marine'},
+            {name: 'Space Marine outriders'},
+            {name: 'Stormcast Eternals gryph-hound'},
+        ],
+        skills: ['3D printing', 'Airbrush painting', 'Brush painting'],
+    },
+    // {
+    //     name: 'various-painted-prints',
+    //     title: 'Various painted prints',
+    //     shortSummary: "There were many 3D prints I've painted",
+    //     parts: [
+
+    //     ]
+    // }
 ];

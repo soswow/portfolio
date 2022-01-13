@@ -11,6 +11,7 @@ import Breadcrumbs, { BreadcrumbsItem } from '@atlaskit/breadcrumbs';
 import PageHeader from '@atlaskit/page-header';
 import { colors } from "@atlaskit/theme";
 import { DiscussionEmbed } from 'disqus-react';
+import ReactMarkdown from 'react-markdown'
 
 import { projectList } from "./data";
 import { config, getCollectionItems } from './media-api';
@@ -64,6 +65,11 @@ const coverCardPreloaderWrapper = css`
 const coverImageStyle = css`
     margin-top: 15px;
 `;
+
+const commentsWrapperStyle = css`
+    margin-top: 45px;
+`;
+
 const fileNameRegexp = /^(\d{8})_(\d{6})_(.*)\..*$/;
 export const ProjectPage = () => {
     const [items, setItems] = useState<MediaCollectionItem[]>([]);
@@ -123,10 +129,6 @@ export const ProjectPage = () => {
         list: items.map(item => getFileIdentifier(item.id))
     }
 
-    // if (coverItem !== null && mediaViewerDataSource.list) {
-    //     mediaViewerDataSource.list.unshift(getFileIdentifier(coverItem.id));
-    // }
-
     const breadcrumbs = (
         <Breadcrumbs>
             <BreadcrumbsItem text="Things I've made" onClick={() => navigate(URLto.things)} />
@@ -170,7 +172,7 @@ export const ProjectPage = () => {
 
         {parts.map(({ name: partName, title, description = [] }) => <div css={partSectionStyle}>
             <h2>{title || partName}</h2>
-            {description.map(paragraph => <p>{paragraph}</p>)}
+            {description.map(paragraph => <ReactMarkdown>{paragraph}</ReactMarkdown>)}
 
             <div css={imagesCountainerStyle}>
                 {items.filter(({ details: { name: itemFileName } }) => itemFileName.indexOf(partName) > -1).map(item =>
@@ -189,15 +191,18 @@ export const ProjectPage = () => {
                     </div>)}
             </div>
         </div>)}
-        <DiscussionEmbed
-            shortname='sashas-portfolio'
-            config={
-                {
-                    url: location.href,
-                    identifier: `things-${name}`,
-                    title
+
+        <div css={commentsWrapperStyle}>
+            <DiscussionEmbed
+                shortname='sashas-portfolio'
+                config={
+                    {
+                        url: location.href,
+                        identifier: `things-${name}`,
+                        title
+                    }
                 }
-            }
-        />
+            />
+        </div>
     </div>;
 }

@@ -46,7 +46,7 @@ export const getCollectionItems = async (collectionName: string): Promise<MediaC
                     collectionCache[collectionName] = items;
                     resolve();
                 }
-            })
+            });
         })
     }
 
