@@ -199,7 +199,6 @@ export const projectList: Project[] = [
             { name: '3D Printing' },
             { name: 'Aceton vapour smoothing' },
             { name: 'Masking and glitter' },
-            { name: 'Masking and glitter' },
             {
                 name: 'Packeging',
                 title: 'Packaging'

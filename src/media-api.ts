@@ -1,5 +1,5 @@
 import { MediaClientConfig, ClientBasedAuth } from '@atlaskit/media-core';
-import { MediaClient, MediaCollectionItem } from '@atlaskit/media-client';
+import { MediaClient, MediaCollectionItem, MediaStore } from '@atlaskit/media-client';
 
 export const config: MediaClientConfig = {
     authProvider: async () => {
@@ -30,15 +30,23 @@ const getToken = async () => {
 
 const collectionCache: { [collectionName: string]: MediaCollectionItem[] } = {};
 export const getCollectionItems = async (collectionName: string): Promise<MediaCollectionItem[]> => {
+
     if (!collectionCache[collectionName]) {
-        await new Promise((resolve) => {
-            mediaClient.mediaStore.getCollectionItems(collectionName,
-                { limit: 100, details: 'minimal' }
-            )
-                .then(({ data: items }) => {
-                    collectionCache[collectionName] = items.contents;
-                    resolve(items.contents);
-                });
+        await new Promise<void>((resolve) => {
+            let prevSize = 0;
+            const replyObject = mediaClient.collection.getItems(collectionName, { limit: 50, details: 'full' })
+            replyObject.subscribe(items => {
+                if (items.length % 50 === 0 && prevSize !== items.length) {
+                    prevSize = items.length;
+                    mediaClient.collection.loadNextPage(collectionName, {
+                        limit: 50,
+                        details: 'full'
+                    });
+                } else {
+                    collectionCache[collectionName] = items;
+                    resolve();
+                }
+            })
         })
     }
 
