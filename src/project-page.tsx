@@ -13,12 +13,13 @@ import { colors } from "@atlaskit/theme";
 import { DiscussionEmbed } from 'disqus-react';
 import ReactMarkdown from 'react-markdown'
 
-import { projectList } from "./data";
+import { getProjectList } from "./data";
 import { config, getCollectionItems } from './media-api';
 import { useEffect, useState } from "react";
 import { statusToLozengeAppearanceMap } from "./types";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { URLto } from "./urlto";
+import { markAsSeen } from "./localStorage";
 
 const singleImageStyle = css`
 
@@ -76,7 +77,7 @@ export const ProjectPage = () => {
     const { projectName } = useParams();
     const navigate = useNavigate();
 
-    const project = projectList.find(({ name }) => name === projectName);
+    const project = getProjectList().find(({ name }) => name === projectName);
 
     if (!project) {
         return <Navigate to={URLto.things} />;
@@ -122,6 +123,7 @@ export const ProjectPage = () => {
 
     useEffect(() => {
         loadItems();
+        markAsSeen(name);
     }, [])
 
     const mediaViewerDataSource: MediaViewerDataSource = {

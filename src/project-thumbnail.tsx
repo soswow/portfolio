@@ -10,6 +10,8 @@ import Spinner from '@atlaskit/spinner';
 import Lozenge from '@atlaskit/lozenge';
 import CommentIcon from '@atlaskit/icon/glyph/comment';
 import Badge from '@atlaskit/badge';
+import AddCircleIcon from '@atlaskit/icon/glyph/add-circle';
+import NewFeature24Icon from '@atlaskit/icon-object/glyph/new-feature/24';
 import { CommentCount } from 'disqus-react';
 import ReactMarkdown from 'react-markdown'
 
@@ -21,16 +23,19 @@ import { URLto } from "./urlto";
 
 interface Props {
     project: Project;
+    isNew: boolean;
 }
 
-const wrapperStyle = css`
+const getWrapperStyle = (isNew: boolean) => css`
+    position: relative;
     width: 300px;
-    border: 1px solid ${colors.N40};
+    border: 1px solid ${isNew ? colors.G400 : colors.N40};
     border-radius: 3px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     padding: 5px;
+    background: ${isNew ? `linear-gradient(0deg, rgba(0,0,0,0) 30%, ${colors.G50} 60%)` : 'none'};
 `;
 
 const cardWrapper = css`
@@ -73,13 +78,24 @@ const badgesStyle = css`
     align-items: center;
 `
 
+const unseenIconStyle = css`
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    z-index: 50;
+    background: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+`;
+
 export const ProjectThumbnail = ({ project: {
     name,
     title,
     status,
     skills,
     shortSummary
-} }: Props) => {
+}, isNew }: Props) => {
     const navigate = useNavigate();
     const [coverItem, setCoverItem] = useState<MediaCollectionItem | null>(null);
 
@@ -95,9 +111,12 @@ export const ProjectThumbnail = ({ project: {
 
     useEffect(() => {
         fetchCoverItem();
-    })
+    }, []);
 
-    return <div css={wrapperStyle}>
+    return <div css={getWrapperStyle(isNew)}>
+        {isNew ? <div css={unseenIconStyle}>
+            <NewFeature24Icon label="unseen" />
+        </div> : null}
         {coverItem ?
             <div css={cardWrapper}>
                 <Card

@@ -1,6 +1,6 @@
 import { Project } from "./types";
 
-export const projectList: Project[] = [
+export const getProjectList: () => Project[] = () => [
     {
         name: 'mandalorian-helmet',
         title: 'Mandalorian helmet',

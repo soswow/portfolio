@@ -3,8 +3,9 @@ import { css, jsx } from "@emotion/react";
 import PageHeader from '@atlaskit/page-header';
 
 import { ProjectThumbnail } from './project-thumbnail';
-import { useNavigate, useParams } from "react-router-dom";
-import { projectList } from "./data";
+import { getProjectList } from "./data";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { loadStorageValue } from "./localStorage";
 
 const imagesCountainerStyle = css`
     display: flex;
@@ -23,21 +24,39 @@ const thumbnailStyle = css`
 `;
 
 export const PortfolioPage = () => {
-    const navigate = useNavigate();
-    const { projectName } = useParams();
+    const [newItems, setNewItems] = useState<string[]>([]);
+    const [projectList] = useState(getProjectList());
+
+    useEffect(() => {
+        const storageValue = loadStorageValue();
+        const newItems = projectList
+            .filter(({name}) => storageValue.seenProjectNames.indexOf(name) === -1)
+            .map(({name}) => name);
+
+        setNewItems(newItems);
+    }, [projectList]);
+
+    const renderThumbnail = useCallback(project => (
+        <div css={thumbnailStyle}>
+            <ProjectThumbnail key={project.name} project={project} isNew={newItems.indexOf(project.name) > -1} />
+        </div>
+    ), [newItems]);
+    
+    projectList.sort((A, B) => {
+        const seenA = newItems.indexOf(A.name) > -1 ? 1 : 0;
+        const seenB = newItems.indexOf(B.name) > -1 ? 1 : 0;
+        return seenB - seenA;
+    });
 
     return (
         <div css={listingPageStyle}>
-                <PageHeader>
-                    Things I've made
-                </PageHeader>
-                <p>Here is a list of projects I've been working over past years. Feel free to click and explore each of them.</p>
-                <div css={imagesCountainerStyle}>
-                    {projectList.map(project =>
-                        <div css={thumbnailStyle}>
-                            <ProjectThumbnail key={project.name} project={project} />
-                        </div>)}
-                </div>
+            <PageHeader>
+                Things I've made
+            </PageHeader>
+            <p>Here is a list of projects I've been working over past years. Feel free to click and explore each of them.</p>
+            <div css={imagesCountainerStyle}>
+                {projectList.map(renderThumbnail)}
             </div>
+        </div>
     );
 }

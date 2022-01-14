@@ -218,6 +218,14 @@
     "@atlaskit/icon" "^21.5.0"
     "@babel/runtime" "^7.0.0"
 
+"@atlaskit/icon-object@^6.2.5":
+  version "6.2.5"
+  resolved "https://registry.yarnpkg.com/@atlaskit/icon-object/-/icon-object-6.2.5.tgz#bdbac368d1514b1ef2481cf023bc63bd8094702c"
+  integrity sha512-S1H7Fu14bYefITaB9Cc/rZx0TNChp5omDzBiiQuvAjEkCHbAeUf3y5cDEYTuRiLXsOSEXgsHxy1JqNA9Uet4mA==
+  dependencies:
+    "@atlaskit/icon" "^21.5.0"
+    "@babel/runtime" "^7.0.0"
+
 "@atlaskit/icon@^21.10.0", "@atlaskit/icon@^21.5.0", "@atlaskit/icon@^21.9.0":
   version "21.10.0"
   resolved "https://registry.yarnpkg.com/@atlaskit/icon/-/icon-21.10.0.tgz#09a3a402dd116e91084c1a8839034be5cfb8d514"
