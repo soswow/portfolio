@@ -69,7 +69,7 @@ export const PortfolioWebsite = () => {
           <div css={navStyle}>
             <SideNavigation label="project">
               <NavigationHeader>
-                <Header description={"Where you find out what I like"}>Sasha's Portfolio</Header>
+                <Header iconBefore={<img src="assets/logo.png" width={24} height={24} />} description={"Come and pat my ego"}>Sasha Makes</Header>
               </NavigationHeader>
               <NavigationContent>
                 <CustomItem component={RouteLink} href={URLto.aboutMe} isSelected={pathname.startsWith(URLto.aboutMe)}>About me</CustomItem>
