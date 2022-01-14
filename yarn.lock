@@ -634,7 +634,7 @@
     "@babel/traverse" "^7.15.0"
     "@babel/types" "^7.15.0"
 
-"@atlaskit/tooltip@^17.5.0":
+"@atlaskit/tooltip@^17.5.0", "@atlaskit/tooltip@^17.5.2":
   version "17.5.2"
   resolved "https://registry.yarnpkg.com/@atlaskit/tooltip/-/tooltip-17.5.2.tgz#b6180cabb4772a9a502f23bd7970565e3d138e59"
   integrity sha512-RD22PGgTomFzN78ge4vug5dhwIX78Oy60fZROrFrA/eYgGXaITIH7d0B9U/DINzm2alID8aL5qT+KRtonqCu3w==

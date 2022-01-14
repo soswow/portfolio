@@ -58,6 +58,7 @@
     "@atlaskit/tag": "^11.2.2",
     "@atlaskit/tag-group": "^10.0.10",
     "@atlaskit/theme": "^12.1.0",
+    "@atlaskit/tooltip": "^17.5.2",
     "@emotion/react": "^11.7.1",
     "disqus-react": "^1.1.2",
     "eslint": "^8",

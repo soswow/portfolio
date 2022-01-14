@@ -10,10 +10,11 @@ import Spinner from '@atlaskit/spinner';
 import Lozenge from '@atlaskit/lozenge';
 import CommentIcon from '@atlaskit/icon/glyph/comment';
 import Badge from '@atlaskit/badge';
-import AddCircleIcon from '@atlaskit/icon/glyph/add-circle';
 import NewFeature24Icon from '@atlaskit/icon-object/glyph/new-feature/24';
 import { CommentCount } from 'disqus-react';
 import ReactMarkdown from 'react-markdown'
+import Tooltip from '@atlaskit/tooltip';
+
 
 import { config, findProjectCover } from './media-api';
 import { Project, statusToLozengeAppearanceMap } from "./types";
@@ -115,7 +116,9 @@ export const ProjectThumbnail = ({ project: {
 
     return <div css={getWrapperStyle(isNew)}>
         {isNew ? <div css={unseenIconStyle}>
-            <NewFeature24Icon label="unseen" />
+            <Tooltip content="I've added new items you didn't see">
+                <NewFeature24Icon label="unseen" />
+            </Tooltip>
         </div> : null}
         {coverItem ?
             <div css={cardWrapper}>
