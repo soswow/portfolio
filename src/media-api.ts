@@ -28,11 +28,11 @@ const getToken = async () => {
     return tokenCache;
 }
 
-const collectionCache: { [collectionName: string]: MediaCollectionItem[] } = {};
-export const getCollectionItems = async (collectionName: string): Promise<MediaCollectionItem[]> => {
+const collectionCache: { [collectionName: string]: Promise<MediaCollectionItem[]> } = {};
 
+export const getCollectionItems = async (collectionName: string): Promise<MediaCollectionItem[]> => {
     if (!collectionCache[collectionName]) {
-        await new Promise<void>((resolve) => {
+        collectionCache[collectionName] = new Promise<MediaCollectionItem[]>((resolve) => {
             let prevSize = 0;
             const replyObject = mediaClient.collection.getItems(collectionName, { limit: 50, details: 'full' })
             replyObject.subscribe(items => {
@@ -43,18 +43,24 @@ export const getCollectionItems = async (collectionName: string): Promise<MediaC
                         details: 'full'
                     });
                 } else {
-                    collectionCache[collectionName] = items;
-                    resolve();
+                    if(collectionName === 'mandalorian-helmet'){
+                        console.log('i am done');
+                    }
+                    resolve(items);
                 }
             });
         })
     }
 
-    return [...collectionCache[collectionName]];
+    return collectionCache[collectionName];
 }
 
 export const findProjectCover = async (projectName: string): Promise<MediaCollectionItem> => {
     const items = await getCollectionItems(projectName);
-    return items.find((item: MediaCollectionItem) => item.details.name.toLocaleLowerCase().indexOf('cover') > -1) || items[0];
+    const coverItem = items.find((item: MediaCollectionItem) => item.details.name.toLocaleLowerCase().indexOf('cover') > -1);
+    if(projectName === 'mandalorian-helmet'){
+        console.log(`${items.length} items. ${coverItem ? 'cover found' : 'cover not found'}`);
+    }
+    return coverItem || items[0];
 }
 
