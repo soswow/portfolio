@@ -4,6 +4,7 @@ export const getProjectList: () => Project[] = () => [
     {
         name: 'mandalorian-helmet',
         title: 'Mandalorian helmet',
+        myFavourite: true,
         skills: [
             '3D printing', '3D modelling',
             'Surface prep', 'Spray painting',
@@ -145,6 +146,7 @@ export const getProjectList: () => Project[] = () => [
     {
         name: 'final-space-grays-gun',
         title: "Gary's gun from Final Space",
+        myFavourite: true,
         shortSummary: "I've 3D modelled from scratch, printed and painted a gun from Final Space show.",
         status: 'Done',
         parts: [
@@ -161,6 +163,7 @@ export const getProjectList: () => Project[] = () => [
     {
         name: 'orville-pm-32',
         title: 'PM-32 gun from Orville',
+        myFavourite: true,
         shortSummary: "I've 3D modelled from scratch, printed and painting a gun from Orville show.",
         status: 'WIP',
         parts: [
@@ -210,6 +213,7 @@ export const getProjectList: () => Project[] = () => [
     {
         name: 'led-tie',
         title: 'Wearable programmable tie',
+        myFavourite: true,
         shortSummary: "Custom designed a programable LED tie that can react to music",
         status: 'Done',
         parts: [

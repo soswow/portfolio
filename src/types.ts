@@ -35,4 +35,5 @@ export interface Project {
     shortSummary: string;
     description?: string[];
     parts: Part[];
+    myFavourite?: boolean;
 }

@@ -6,6 +6,8 @@ import { ProjectThumbnail } from './project-thumbnail';
 import { getProjectList } from "./data";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { loadStorageValue } from "./localStorage";
+import { findProjectCover } from "./media-api";
+import { Project } from "./types";
 
 const imagesCountainerStyle = css`
     display: flex;
@@ -30,22 +32,29 @@ export const PortfolioPage = () => {
     useEffect(() => {
         const storageValue = loadStorageValue();
         const newItems = projectList
-            .filter(({name}) => storageValue.seenProjectNames.indexOf(name) === -1)
-            .map(({name}) => name);
+            .filter(({ name }) => storageValue.seenProjectNames.indexOf(name) === -1)
+            .map(({ name }) => name);
 
         setNewItems(newItems);
     }, [projectList]);
 
-    const renderThumbnail = useCallback(project => (
+    const renderThumbnail = useCallback((project: Project) => (
         <div css={thumbnailStyle}>
-            <ProjectThumbnail key={project.name} project={project} isNew={newItems.indexOf(project.name) > -1} />
+            <ProjectThumbnail
+                key={project.name}
+                project={project}
+                isNew={newItems.indexOf(project.name) > -1}
+                isMyFavourite={newItems.length === 0 ? (project.myFavourite || false) : false}
+            />
         </div>
     ), [newItems]);
-    
-    projectList.sort((A, B) => {
-        const seenA = newItems.indexOf(A.name) > -1 ? 1 : 0;
-        const seenB = newItems.indexOf(B.name) > -1 ? 1 : 0;
-        return seenB - seenA;
+
+    projectList.sort((projA, projB) => {
+        const seenA = newItems.indexOf(projA.name) > -1 ? 1 : 0;
+        const seenB = newItems.indexOf(projB.name) > -1 ? 1 : 0;
+        const seenDiff = seenB - seenA;
+        const favDiff = Number(projB.myFavourite || false) - Number(projA.myFavourite || false);
+        return seenDiff === 0 ? favDiff : seenDiff;
     });
 
     return (

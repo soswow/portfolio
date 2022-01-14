@@ -14,6 +14,7 @@ import NewFeature24Icon from '@atlaskit/icon-object/glyph/new-feature/24';
 import { CommentCount } from 'disqus-react';
 import ReactMarkdown from 'react-markdown'
 import Tooltip from '@atlaskit/tooltip';
+import PremiumIcon from '@atlaskit/icon/glyph/premium';
 
 
 import { config, findProjectCover } from './media-api';
@@ -25,18 +26,21 @@ import { URLto } from "./urlto";
 interface Props {
     project: Project;
     isNew: boolean;
+    isMyFavourite: boolean;
 }
 
-const getWrapperStyle = (isNew: boolean) => css`
+const getWrapperStyle = (isNew: boolean, favIconStyle?: boolean) => css`
     position: relative;
     width: 300px;
-    border: 1px solid ${isNew ? colors.G400 : colors.N40};
+    border: 1px solid ${isNew ? colors.G400 : favIconStyle ? colors.N60 : colors.N40};
     border-radius: 3px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     padding: 5px;
-    background: ${isNew ? `linear-gradient(0deg, rgba(0,0,0,0) 30%, ${colors.G50} 60%)` : 'none'};
+    background: ${isNew ?
+         `linear-gradient(0deg, rgba(0,0,0,0) 30%, ${colors.G50} 60%)` : 
+         favIconStyle ? `linear-gradient(0deg, rgba(0,0,0,0) 30%, ${colors.R50} 60%)` : 'none'};
 `;
 
 const cardWrapper = css`
@@ -90,13 +94,22 @@ const unseenIconStyle = css`
     border-radius: 5px;
 `;
 
+const favIconStyle = css`
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    z-index: 50;
+    width: 24px;
+    height: 24px;
+`;
+
 export const ProjectThumbnail = ({ project: {
     name,
     title,
     status,
     skills,
-    shortSummary
-}, isNew }: Props) => {
+    shortSummary,
+}, isNew, isMyFavourite }: Props) => {
     const navigate = useNavigate();
     const [coverItem, setCoverItem] = useState<MediaCollectionItem | null>(null);
 
@@ -114,12 +127,18 @@ export const ProjectThumbnail = ({ project: {
         fetchCoverItem();
     }, []);
 
-    return <div css={getWrapperStyle(isNew)}>
+    return <div css={getWrapperStyle(isNew, isMyFavourite)}>
         {isNew ? <div css={unseenIconStyle}>
             <Tooltip content="I've added new items you didn't see">
                 <NewFeature24Icon label="unseen" />
             </Tooltip>
         </div> : null}
+        {isMyFavourite ? <div css={favIconStyle}>
+            <Tooltip content="One of my proudest things">
+                <PremiumIcon label="my favourite" primaryColor={colors.Y500}/>
+            </Tooltip>
+        </div> 
+        : null}
         {coverItem ?
             <div css={cardWrapper}>
                 <Card
