@@ -18,9 +18,10 @@ import PremiumIcon from '@atlaskit/icon/glyph/premium';
 
 
 import { config, findProjectCover } from './media-api';
-import { Project, statusToLozengeAppearanceMap } from "./types";
+import { Project, skillToColourMap, statusToLozengeAppearanceMap } from "./types";
 import { generatePath, useNavigate } from "react-router-dom";
 import { URLto } from "./urlto";
+import { renderSkills } from "./common";
 
 
 interface Props {
@@ -160,9 +161,7 @@ export const ProjectThumbnail = ({ project: {
         </div>
         <ReactMarkdown>{shortSummary}</ReactMarkdown>
         <div css={tagGroupWrapperStyle}>
-            <TagGroup>
-                {skills.map(skill => <SimpleTag key={skill} text={skill} />)}
-            </TagGroup>
+            {renderSkills(skills)}
         </div>
         <div css={badgesStyle}>
             <CommentIcon label="comment-count" /><Badge><CommentCount

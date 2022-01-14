@@ -1,4 +1,5 @@
 import { ThemeAppearance } from "@atlaskit/lozenge";
+import { TagColor } from "@atlaskit/tag/dist/types/types";
 
 export type Skill = 
     | '3D printing'
@@ -15,6 +16,13 @@ export type Skill =
     | 'Wood working'
     | 'Electronics'
     | 'Wearable';
+
+export const skillToColourMap: Partial<Record<Skill, TagColor>> = {
+    "3D printing": 'redLight',
+    "3D modelling": 'purpleLight',
+    'Own design': 'yellow',
+    'Electronics': 'tealLight',
+};
 
 export type Status = 'Done' | 'WIP';
 export const statusToLozengeAppearanceMap: Record< Status, ThemeAppearance> = {

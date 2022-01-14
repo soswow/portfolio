@@ -6,7 +6,7 @@ export const getProjectList: () => Project[] = () => [
         title: 'Mandalorian helmet',
         myFavourite: true,
         skills: [
-            '3D printing', '3D modelling',
+            '3D printing',
             'Surface prep', 'Spray painting',
             'Weathering'
         ],
@@ -283,7 +283,7 @@ export const getProjectList: () => Project[] = () => [
             {name: 'Electronics'},
             {name: 'Result'},
         ],
-        skills: ['3D modelling', 'Own design', 'Electronics']
+        skills: ['3D modelling', '3D printing', 'Own design', 'Electronics']
     },
     {
         name: 'miniatures',

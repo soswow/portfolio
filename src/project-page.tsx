@@ -20,6 +20,7 @@ import { statusToLozengeAppearanceMap } from "./types";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { URLto } from "./urlto";
 import { markAsSeen } from "./localStorage";
+import { renderSkills } from "./common";
 
 const singleImageStyle = css`
 
@@ -149,9 +150,7 @@ export const ProjectPage = () => {
 
         {description.length > 0 && description.map((paragraph, i) => <p key={i}>{paragraph}</p>) || shortSummary}
         <div css={tagGroupWrapperStyle}>
-            Skills applied: <TagGroup>
-                {skills.map(skill => <SimpleTag key={skill} text={skill} />)}
-            </TagGroup>
+            Skills applied: {renderSkills(skills)}
         </div>
 
         <div css={coverImageStyle}>
