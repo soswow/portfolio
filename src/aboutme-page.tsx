@@ -9,16 +9,27 @@ const wrapperStyle = css`
 const roundedImageStyle = css`
     border-radius: 400px;
     margin: 35px auto 0;
-    width: 500px;
+    width: 300px;
     display: block;
 `
 
 export const AboutMePage = () => {
     
     const aboutMe = `
-Hi, my name is Aleksandr Motsjonov, but everyone call me Sasha.
+Hi, my name is Aleksandr Motsjonov, but everyone calls me Sasha. I live in Sydney / Australia. 
+I am a software engineer by day (for the last 15 years) and by night, evening, morning and any other time I am a maker.
 
-I am a software engineer by day (for last 15 years) and by night, evening, morning and any other time I am a maker.
+Since we came to Australia in 2014 I've been making non-stop. On this website, I've collected 
+(still collecting at the time of writing) bunch of projects I've been working on. 
+
+I am continuously learning new techniques and diving into new directions ([serious modelling](https://www.instagram.com/p/CYWLK6_p1zQ/) or learning how to draw and sketch my own concept art)
+
+Feel free to look around and leave a comment. You can find me on different platforms:
+* [Twitter](https://twitter.com/soswow)
+* [Instagram](https://www.instagram.com/soswow42/)
+* [Youtube](https://www.youtube.com/channel/UCbFa-fh5c2TRwyQfIMU6S3g)
+
+Or simply write me a note to **soswow** (at) **gmail** (dot) **com**
     `
     return (
         <div css={wrapperStyle}>

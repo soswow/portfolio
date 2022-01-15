@@ -77,7 +77,7 @@ export const PortfolioPage = ({
             <PageHeader>
                 Things I've made
             </PageHeader>
-            <p>Here is a list of projects I've been working over past years. Feel free to click and explore each of them.</p>
+            <p>Here is a list of projects I've been working on over the past years. Feel free to click and explore each of them.</p>
             <div css={imagesCountainerStyle}>
                 {projectList.map(renderThumbnail)}
             </div>

@@ -13,7 +13,7 @@ export type Skill =
     | 'Weathering'
     | 'Own design'
     | 'Vapour smoothing'
-    | 'Wood working'
+    | 'Woodworking'
     | 'Electronics'
     | 'Wearable';
 

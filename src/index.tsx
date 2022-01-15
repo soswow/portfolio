@@ -146,7 +146,7 @@ export const PortfolioWebsite = () => {
         <div css={navStyle}>
           <SideNavigation label="project">
             <NavigationHeader>
-              <Header iconBefore={<img src="assets/logo.png" width={24} height={24} />} description={"Come and pat my ego"}>Sasha Makes</Header>
+              <Header iconBefore={<img src="assets/logo.png" width={24} height={24} />} description={"Come and pat my ego 😜"}>Sasha Makes</Header>
             </NavigationHeader>
             <NavigationContent>
               <Section hasSeparator={true}>

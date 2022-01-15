@@ -148,7 +148,7 @@ export const ProjectPage = () => {
             </div>
         </PageHeader>
 
-        {description.length > 0 && description.map((paragraph, i) => <p key={i}>{paragraph}</p>) || shortSummary}
+        {description.length > 0 && description.map((paragraph, i) => <ReactMarkdown key={i}>{paragraph}</ReactMarkdown>) || <ReactMarkdown>{shortSummary}</ReactMarkdown>}
         <div css={tagGroupWrapperStyle}>
             Skills applied: {renderSkills(skills)}
         </div>
