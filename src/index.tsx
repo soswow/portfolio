@@ -59,6 +59,7 @@ const navStyle = css`
   flex-shrink: 0;
   position: fixed;
   height: 100%;
+  z-index: 10;
 `;
 
 const contentStyle = css`
@@ -158,7 +159,7 @@ export const PortfolioWebsite = () => {
               <Routes>
                 <Route path={URLto.things} element={
                   <Section>
-                    <HeadingItem>Tags</HeadingItem>
+                    <HeadingItem>Skills</HeadingItem>
                     <NavigationContent>
                       <i>(Must have one of these skills)</i>
                       <div css={navFormStyle}>

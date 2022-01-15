@@ -254,7 +254,7 @@ export const getProjectList: () => Project[] = () => [
             { name: 'Priming and sanding' },
             { name: 'Result' },
         ],
-        skills: ['3D modelling', 'Own design', '3D printing', 'Vapour smoothing', 'Wood working', 'Electronics']
+        skills: ['3D modelling', 'Own design', '3D printing', 'Vapour smoothing', 'Wood working', 'Electronics', 'Stencil making']
     },
     {
         name: 'star-lord-blaster',
@@ -262,6 +262,7 @@ export const getProjectList: () => Project[] = () => [
         shortSummary: "Printed and painted my own Quad Blaster.",
         status: 'Done',
         parts: [            
+            {name: 'Reference'},
             {name: '3D Printing'},
             {name: 'Sanding'},
             {name: 'Accembly'},
@@ -270,7 +271,7 @@ export const getProjectList: () => Project[] = () => [
             {name: 'Stencil'},
             {name: 'Result'},
         ],
-        skills: ['3D printing', 'Airbrush painting', 'Chipping paint', 'Surface prep', 'Weathering']
+        skills: ['3D printing', 'Airbrush painting', 'Chipping paint', 'Surface prep', 'Weathering', 'Stencil making']
     },
     {
         name: 'red-hr-button',
@@ -283,7 +284,7 @@ export const getProjectList: () => Project[] = () => [
             {name: 'Electronics'},
             {name: 'Result'},
         ],
-        skills: ['3D modelling', '3D printing', 'Own design', 'Electronics']
+        skills: ['3D modelling', '3D printing', 'Own design', 'Electronics', 'Stencil making']
     },
     {
         name: 'miniatures',
@@ -297,12 +298,124 @@ export const getProjectList: () => Project[] = () => [
         ],
         skills: ['3D printing', 'Airbrush painting', 'Brush painting'],
     },
-    // {
-    //     name: 'various-painted-prints',
-    //     title: 'Various painted prints',
-    //     shortSummary: "There were many 3D prints I've painted",
-    //     parts: [
-
-    //     ]
-    // }
+    {
+        name: 'various-painted-prints',
+        title: 'Various painted prints',
+        shortSummary: "There were many 3D prints I've painted",
+        status: 'Done',
+        parts: [
+            {name: 'Reference'},
+            {name: "Razor Crest"},
+            {name: "zelda chest", title: 'Chest from game Zelda'},
+            {name: "Pirate chest", title: 'Chest'},
+            {name: "pickle rick", title: 'Pickle Rick!'},
+            {name: "batman", title: 'Batman figure'},
+            {name: "Om Nom"},
+        ],
+        skills: ['3D printing', 'Airbrush painting', 'Brush painting', 'Surface prep', 'Weathering'],
+    },
+    {
+        name: 'star-man',
+        title: 'SpaceX starman figure',
+        shortSummary: 'This was my first masking/airbrushing project.',
+        status: 'Done',
+        parts: [
+            {name: 'Reference'},
+            {name: '3D Printing'},
+            {name: 'Filler Primer and Sanding'},
+            {name: 'Black primer base coat'},
+            {name: 'Red coat'},
+            {name: 'Black coat'},
+            {name: 'White coat'},
+            {name: 'Silver and varnish'},
+            {name: 'Gluing'},
+            {name: 'Final'},
+        ],
+        skills: ['3D printing', 'Surface prep', 'Airbrush painting']
+    },
+    {
+        name: 'led-cap',
+        title: 'Atlassian LED cap',
+        shortSummary: 'Cap with Atlassian logo and addressable RGB LEDs inside.',
+        status: 'Done',
+        myFavourite: true,
+        parts: [
+            {name: "Cap source"},
+            {name: "Making holes"},
+            {name: "Rig for soldering"},
+            {name: "Glue LEDs in"},
+            {name: "Logo shells"},
+            {name: "Internal soft interface"},
+            {name: "Control box"},
+            {name: "Programming"},
+            {name: "Final"},
+        ],
+        skills: ['3D modelling', '3D printing', 'Electronics', 'Own design', 'Wearable'],
+    },
+    {
+        name: 'primaris-space-marine-helmet',
+        title: 'Primaris Space Marine Helmet',
+        shortSummary: 'Full blown space marine helmet of my own design',
+        status: 'WIP',
+        myFavourite: true,
+        parts: [
+            {name: 'Reference'},
+            {name: '3D Modelling'},
+            {name: '3D Printing'},
+            {name: 'Fixing layer shift'},
+            {name: 'Dry fit'},
+            {name: 'Resin 3D Parts'},
+            {name: 'Magnet collar retrofit'},
+            {name: 'Lense business'},
+            {name: 'Prime detail parts'},
+            {name: 'Prime Sand One'},
+            {name: 'Putty Sand Prime Two'},
+            {name: 'Putty Sand Prime Three'},
+            {name: 'Putty Sand Prime Four'},
+            {name: 'Base Ultramarine Coat'},
+        ],
+        skills: ['3D modelling', '3D printing', 'Own design', 'Spray painting', 'Surface prep']
+    },
+    {
+        name: 'various-atlassian-trophies',
+        title: 'Various Atlassian skulpts',
+        shortSummary: "Over the years I've made bunch of Atlassian inspired skulpts.",
+        status: 'Done',
+        parts: [
+            {name: 'Atlassian New Logo design 2'},
+            {name: 'Atlassian New Logo design 1'},
+            {name: 'Departure Trophy 1'},
+            {name: 'Departure Trophy 2'},
+            {name: 'Departure Trophy 3'},
+        ],
+        skills: ['3D modelling', '3D printing', 'Own design', 'Brush painting', 'Airbrush painting', 'Stencil making'],
+    },
+    {
+        name: 'spray-booths',
+        title: '2 Spray booths',
+        shortSummary: "I've constructed 2 spray booths for all the fume extraction needs.",
+        status: 'Done',
+        parts: [
+            {name: 'Big Booth'},
+            {name: 'Portable Booth'},
+        ],
+        skills: ['Wood working', 'Own design']
+    },
+    {
+        name: 'workspace-furniture',
+        title: 'DIY Table and shelves',
+        shortSummary: "I've constructed bunch of tables and shelve unit for my office.",
+        status: 'Done',
+        parts: [
+            {name: 'Big workbanch'},
+            {name: 'Hobby Table Legs'},
+            {name: 'Hobby Table top'},
+            {name: 'Hobby Table Cross beams'},
+            {name: 'Hobby Shelves Construction'},
+            {name: 'Hobby Shelves Assembly'},
+            {name: 'Flimsy Lights beam'},
+            {name: 'Lights'},
+        ],
+        skills: ['Own design', 'Wood working', '3D modelling']
+    }
 ];
