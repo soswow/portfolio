@@ -6,7 +6,6 @@ import { ProjectThumbnail } from './project-thumbnail';
 import { getProjectList } from "./data";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { loadStorageValue } from "./localStorage";
-import { findProjectCover } from "./media-api";
 import { Project, Skill } from "./types";
 
 const imagesCountainerStyle = css`
@@ -26,7 +25,7 @@ const thumbnailStyle = css`
 `;
 
 interface Props {
-    selectedSkills: Skill[];
+    selectedSkills: Record<Skill, boolean>;
 }
 
 export const PortfolioPage = ({
@@ -37,7 +36,7 @@ export const PortfolioPage = ({
         const projects = getProjectList();
         return projects.filter(
             ({ skills }) => skills.reduce<boolean>(
-                (memo, skill) => (memo || selectedSkills.indexOf(skill) > -1)
+                (memo, skill) => (memo || selectedSkills[skill])
                 , false
             )
         );

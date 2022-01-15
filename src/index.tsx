@@ -80,6 +80,11 @@ const skillFilterButtonsStyle = css`
   margin-top: 5px;
 `
 
+const navSectionHeaderButtonStyle = css`
+  float: right;
+  margin-top: -2px;
+`;
+
 type CustomProps = CustomItemComponentProps & { href: string };
 const RouteLink = (props: CustomProps) => {
   const {
@@ -112,9 +117,10 @@ export const PortfolioWebsite = () => {
   }, []);
 
   const storedSelectedSkills = sessionStorage.getItem(SELECTED_SKILLS_STORAGE_KEY);
-  const [selectedSkills, setSelectedSkills] = useState(
+  const allSkillsSelectedRecord = Object.fromEntries(skills.map(skill => [skill, true])) as Record<Skill, boolean>;
+  const [selectedSkills, setSelectedSkills] = useState<Record<Skill, boolean>>(
     storedSelectedSkills && JSON.parse(storedSelectedSkills) ||
-    skills
+    allSkillsSelectedRecord
   );
 
   useEffect(() => {
@@ -122,23 +128,24 @@ export const PortfolioWebsite = () => {
   }, [selectedSkills]);
 
   const onSkillToggleChange = useCallback((skill: Skill) => () => {
-    const newSelectedSkills = [...selectedSkills];
-    const index = newSelectedSkills.indexOf(skill);
-    if (index > -1) {
-      newSelectedSkills.splice(index, 1);
-    } else {
-      newSelectedSkills.push(skill);
-    }
-    setSelectedSkills(newSelectedSkills);
+    selectedSkills[skill] = !selectedSkills[skill];
+    setSelectedSkills({ ...selectedSkills });
   }, [selectedSkills]);
 
   const onRemoveAllSkills = useCallback(() => {
-    setSelectedSkills([]);
+    setSelectedSkills({ ...Object.fromEntries(skills.map(skill => [skill, false])) as Record<Skill, boolean> });
   }, []);
 
   const onSelectAllSkills = useCallback(() => {
-    setSelectedSkills([...skills]);
+    setSelectedSkills({ ...allSkillsSelectedRecord });
   }, [skills]);
+
+  const areAllSkillsSelected = Object.values(selectedSkills).reduce((memo: boolean, bool: boolean) => memo && bool, true);
+  const [isSkillFiltersOpen, setIsSkillFiltersOpen] = useState(!areAllSkillsSelected);
+
+  const toggleSkillsFilterVisibility = useCallback(() => {
+    setIsSkillFiltersOpen(!isSkillFiltersOpen);
+  }, [isSkillFiltersOpen]);
 
   return (
     <div css={mainWrapperStyle}>
@@ -159,28 +166,30 @@ export const PortfolioWebsite = () => {
               <Routes>
                 <Route path={URLto.things} element={
                   <Section>
-                    <HeadingItem>Skills</HeadingItem>
-                    <NavigationContent>
-                      <i>(Must have one of these skills)</i>
-                      <div css={navFormStyle}>
-                        {skills.map(skill => (
-                          <div css={skillFilterToggleRowStyle}>
-                            <label htmlFor={`skill-toggle-${skill}`}>{skill} [{skillCount[skill]}]</label>
-                            <Toggle
-                              id={`skill-toggle-${skill}`}
-                              isChecked={selectedSkills.indexOf(skill) > -1}
-                              onChange={onSkillToggleChange(skill)}
-                            />
+                    <HeadingItem>Skill filters <div css={navSectionHeaderButtonStyle}><Button spacing="compact" onClick={toggleSkillsFilterVisibility}>{isSkillFiltersOpen ? "Hide" : "Show"}</Button></div></HeadingItem>
+                    {isSkillFiltersOpen ?
+                      <NavigationContent>
+                        <i>(Must have one of these skills)</i>
+                        <div css={navFormStyle}>
+                          {skills.map(skill => (
+                            <div css={skillFilterToggleRowStyle}>
+                              <label htmlFor={`skill-toggle-${skill}`}>{skill} [{skillCount[skill]}]</label>
+                              <Toggle
+                                id={`skill-toggle-${skill}`}
+                                isChecked={selectedSkills[skill]}
+                                onChange={onSkillToggleChange(skill)}
+                              />
+                            </div>
+                          ))}
+                          <div css={skillFilterButtonsStyle}>
+                            <ButtonGroup>
+                              <Button spacing="compact" onClick={onRemoveAllSkills}>Remove all</Button>
+                              <Button spacing="compact" onClick={onSelectAllSkills}>Select all</Button>
+                            </ButtonGroup>
                           </div>
-                        ))}
-                        <div css={skillFilterButtonsStyle}>
-                          <ButtonGroup>
-                            <Button spacing="compact" onClick={onRemoveAllSkills}>Remove all</Button>
-                            <Button spacing="compact" onClick={onSelectAllSkills}>Select all</Button>
-                          </ButtonGroup>
                         </div>
-                      </div>
-                    </NavigationContent>
+                      </NavigationContent>
+                      : null}
                   </Section>
                 } />
               </Routes>
