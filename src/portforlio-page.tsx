@@ -7,7 +7,7 @@ import { getProjectList } from "./data";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { loadStorageValue } from "./localStorage";
 import { findProjectCover } from "./media-api";
-import { Project } from "./types";
+import { Project, Skill } from "./types";
 
 const imagesCountainerStyle = css`
     display: flex;
@@ -25,9 +25,24 @@ const thumbnailStyle = css`
     padding: 5px 5px 0 0;
 `;
 
-export const PortfolioPage = () => {
+interface Props {
+    selectedSkills: Skill[];
+}
+
+export const PortfolioPage = ({
+    selectedSkills
+}: Props) => {
     const [newItems, setNewItems] = useState<string[]>([]);
-    const [projectList] = useState(getProjectList());
+    const projectList = useMemo(() => {        
+        const projects = getProjectList();
+        return projects.filter(
+            ({ skills }) => skills.reduce<boolean>(
+                (memo, skill) => (memo || selectedSkills.indexOf(skill) > -1)
+                , false
+            )
+        );
+    }, [selectedSkills]);
+
 
     useEffect(() => {
         const storageValue = loadStorageValue();

@@ -270,7 +270,7 @@ export const getProjectList: () => Project[] = () => [
             {name: 'Stencil'},
             {name: 'Result'},
         ],
-        skills: ['3D printing', 'Airbrush painting', 'Chipping paint', 'Surface prep']
+        skills: ['3D printing', 'Airbrush painting', 'Chipping paint', 'Surface prep', 'Weathering']
     },
     {
         name: 'red-hr-button',

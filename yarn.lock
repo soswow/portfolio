@@ -625,6 +625,18 @@
     "@atlaskit/tokens" "^0.4.0"
     "@babel/runtime" "^7.0.0"
 
+"@atlaskit/toggle@^12.4.0":
+  version "12.4.0"
+  resolved "https://registry.yarnpkg.com/@atlaskit/toggle/-/toggle-12.4.0.tgz#49dbdad119780527d9c78edb1e0897ad9794ab76"
+  integrity sha512-iYXiHWCLMwcTYAVNAhc7p+qmPqt/OuiPCFqVCY3BqBqT157mRD0nH87Lg0PAYDxhkUHnVcd6Rz8M5rijjLKbxg==
+  dependencies:
+    "@atlaskit/analytics-next" "^8.0.0"
+    "@atlaskit/icon" "^21.10.0"
+    "@atlaskit/theme" "^12.1.0"
+    "@atlaskit/tokens" "^0.4.0"
+    "@babel/runtime" "^7.0.0"
+    "@emotion/core" "^10.0.9"
+
 "@atlaskit/tokens@^0.4.0":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@atlaskit/tokens/-/tokens-0.4.1.tgz#eb297bf5c090ad961c21024ff82fe8842ccd0c23"
