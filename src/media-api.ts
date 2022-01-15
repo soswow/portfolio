@@ -36,12 +36,15 @@ export const getCollectionItems = async (collectionName: string): Promise<MediaC
             let prevSize = 0;
             const replyObject = mediaClient.collection.getItems(collectionName, { limit: 50, details: 'full' })
             replyObject.subscribe(items => {
+                
                 if (items.length % 50 === 0 && prevSize !== items.length) {
-                    prevSize = items.length;
-                    mediaClient.collection.loadNextPage(collectionName, {
-                        limit: 50,
-                        details: 'full'
-                    });
+                    prevSize = items.length;                    
+                    setTimeout(() => {
+                        mediaClient.collection.loadNextPage(collectionName, {
+                            limit: 50,
+                            details: 'full'
+                        });
+                    }, 0);
                 } else {
                     resolve(items);
                 }
