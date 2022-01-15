@@ -43,9 +43,6 @@ export const getCollectionItems = async (collectionName: string): Promise<MediaC
                         details: 'full'
                     });
                 } else {
-                    if(collectionName === 'mandalorian-helmet'){
-                        console.log('i am done');
-                    }
                     resolve(items);
                 }
             });
@@ -58,9 +55,6 @@ export const getCollectionItems = async (collectionName: string): Promise<MediaC
 export const findProjectCover = async (projectName: string): Promise<MediaCollectionItem> => {
     const items = await getCollectionItems(projectName);
     const coverItem = items.find((item: MediaCollectionItem) => item.details.name.toLocaleLowerCase().indexOf('cover') > -1);
-    if(projectName === 'mandalorian-helmet'){
-        console.log(`${items.length} items. ${coverItem ? 'cover found' : 'cover not found'}`);
-    }
     return coverItem || items[0];
 }
 
