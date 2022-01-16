@@ -33,7 +33,7 @@ const projectPageStyle = css`
 const imagesCountainerStyle = css`
     display: flex;
     flex-wrap: wrap;
-    width: 900px;
+    max-width: 900px;
     margin-top: 10px;
     gap: 5px;
 `;
@@ -50,12 +50,12 @@ const tagGroupWrapperStyle = css`
 `;
 
 const partSectionStyle = css`
-    width: 900px;
+    max-width: 900px;
     margin-top: 25px;
 `;
 
 const coverCardPreloaderWrapper = css`
-    width: 900px;
+    max-width: 900px;
     height: 500px;
     background: ${colors.N20};
     display: flex;
@@ -66,6 +66,7 @@ const coverCardPreloaderWrapper = css`
 
 const coverImageStyle = css`
     margin-top: 15px;
+    max-width: 900px;
 `;
 
 const commentsWrapperStyle = css`
@@ -164,7 +165,7 @@ export const ProjectPage = () => {
                         disableOverlay={true}
                         shouldOpenMediaViewer={true}
                         dimensions={{
-                            width: 900,
+                            width: '100%',
                             height: 500
                         }}
                     />

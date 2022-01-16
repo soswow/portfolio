@@ -4,7 +4,7 @@ import PageHeader from '@atlaskit/page-header';
 import ReactMarkdown from 'react-markdown'
 
 const wrapperStyle = css`
-    width: 900px;
+    max-width: 900px;
 `
 const roundedImageStyle = css`
     border-radius: 400px;

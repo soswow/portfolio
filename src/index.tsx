@@ -14,7 +14,8 @@ import {
 } from '@atlaskit/side-navigation';
 import Button, { ButtonGroup } from '@atlaskit/button';
 import Toggle from '@atlaskit/toggle';
-
+import FolderFilledIcon from '@atlaskit/icon/glyph/folder-filled';
+import PersonIcon from '@atlaskit/icon/glyph/person';
 
 import {
   Routes,
@@ -55,15 +56,31 @@ const navWrapperStyle = css`
   gap: 20px
 `;
 const navStyle = css`
-  width: 240px;
   flex-shrink: 0;
   position: fixed;
   height: 100%;
   z-index: 10;
+  > nav {
+    min-width: 0;
+  }
+  @media screen and (max-width: 1160px) {
+    > nav a {
+      padding-right: 2px;
+      padding-left: 2px;
+    }
+  }
+
+  width: 60px;
+  @media screen and (min-width: 1160px) {
+    width: 240px;
+  }
 `;
 
 const contentStyle = css`
-  margin-left: 260px
+  margin-left: 80px;
+  @media screen and (min-width: 1160px) {
+    margin-left: 260px;
+  }
 `;
 
 const navFormStyle = css`
@@ -84,6 +101,12 @@ const navSectionHeaderButtonStyle = css`
   float: right;
   margin-top: -2px;
 `;
+
+const hideWhenSmallStyle = css`
+  @media screen and (max-width: 1160px) {
+    display: none;
+  }
+`
 
 type CustomProps = CustomItemComponentProps & { href: string };
 const RouteLink = (props: CustomProps) => {
@@ -153,42 +176,49 @@ export const PortfolioWebsite = () => {
         <div css={navStyle}>
           <SideNavigation label="project">
             <NavigationHeader>
-              <Header iconBefore={<img src="/assets/logo.png" width={24} height={24} />} description={"Come and pat my ego 😜"}>Sasha Makes</Header>
+              <Header iconBefore={<img src="/assets/logo.png" width={24} height={24} />} description={<div css={hideWhenSmallStyle}>Come and pat my ego 😜</div>}><div css={hideWhenSmallStyle}>Sasha Makes</div></Header>
             </NavigationHeader>
             <NavigationContent>
               <Section hasSeparator={true}>
-                <HeadingItem>Places to visit</HeadingItem>
+                <div css={hideWhenSmallStyle}>
+                  <HeadingItem>Places to visit</HeadingItem>
+                </div>
                 <NavigationContent>
-                  <CustomItem component={RouteLink} href={URLto.aboutMe} isSelected={pathname.startsWith(URLto.aboutMe)}>About me</CustomItem>
-                  <CustomItem component={RouteLink} href={URLto.things} isSelected={pathname.startsWith(URLto.things)}>Things I've made</CustomItem>
+                  <CustomItem iconBefore={<PersonIcon label="about-me-page" />} component={RouteLink} href={URLto.aboutMe} isSelected={pathname.startsWith(URLto.aboutMe)}><div css={hideWhenSmallStyle}>About me</div></CustomItem>
+                  <CustomItem iconBefore={<FolderFilledIcon label="things-page" />} component={RouteLink} href={URLto.things} isSelected={pathname.startsWith(URLto.things)}><div css={hideWhenSmallStyle}>Things I've made</div></CustomItem>
                 </NavigationContent>
               </Section>
               <Routes>
                 <Route path={URLto.things} element={
+
                   <Section>
-                    <HeadingItem>Skill filters <div css={navSectionHeaderButtonStyle}><Button spacing="compact" onClick={toggleSkillsFilterVisibility}>{isSkillFiltersOpen ? "Hide" : "Show"}</Button></div></HeadingItem>
+                    <div css={hideWhenSmallStyle}>
+                      <HeadingItem>Skill filters <div css={navSectionHeaderButtonStyle}><Button spacing="compact" onClick={toggleSkillsFilterVisibility}>{isSkillFiltersOpen ? "Hide" : "Show"}</Button></div></HeadingItem>
+                    </div>
                     {isSkillFiltersOpen ?
-                      <NavigationContent>
-                        <i>(Must have one of these skills)</i>
-                        <div css={navFormStyle}>
-                          {skills.map(skill => (
-                            <div css={skillFilterToggleRowStyle}>
-                              <label htmlFor={`skill-toggle-${skill}`}>{skill} [{skillCount[skill]}]</label>
-                              <Toggle
-                                id={`skill-toggle-${skill}`}
-                                isChecked={selectedSkills[skill]}
-                                onChange={onSkillToggleChange(skill)}
-                              />
+                      <div css={hideWhenSmallStyle}>
+                        <NavigationContent>
+                          <i>(Must have one of these skills)</i>
+                          <div css={navFormStyle}>
+                            {skills.map(skill => (
+                              <div css={skillFilterToggleRowStyle}>
+                                <label htmlFor={`skill-toggle-${skill}`}>{skill} [{skillCount[skill]}]</label>
+                                <Toggle
+                                  id={`skill-toggle-${skill}`}
+                                  isChecked={selectedSkills[skill]}
+                                  onChange={onSkillToggleChange(skill)}
+                                />
+                              </div>
+                            ))}
+                            <div css={skillFilterButtonsStyle}>
+                              <ButtonGroup>
+                                <Button spacing="compact" onClick={onRemoveAllSkills}>Remove all</Button>
+                                <Button spacing="compact" onClick={onSelectAllSkills}>Select all</Button>
+                              </ButtonGroup>
                             </div>
-                          ))}
-                          <div css={skillFilterButtonsStyle}>
-                            <ButtonGroup>
-                              <Button spacing="compact" onClick={onRemoveAllSkills}>Remove all</Button>
-                              <Button spacing="compact" onClick={onSelectAllSkills}>Select all</Button>
-                            </ButtonGroup>
                           </div>
-                        </div>
-                      </NavigationContent>
+                        </NavigationContent>
+                      </div>
                       : null}
                   </Section>
                 } />

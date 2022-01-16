@@ -11,12 +11,12 @@ import { Project, Skill } from "./types";
 const imagesCountainerStyle = css`
     display: flex;
     flex-wrap: wrap;
-    width: 915px;
+    max-width: 915px;
     margin-top: 15px;
 `;
 
 const listingPageStyle = css`
-    width: 915px;
+    max-width: 915px;
     margin: 0 auto;
 `
 
