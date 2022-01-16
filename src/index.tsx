@@ -33,6 +33,8 @@ import { getProjectList } from "./data";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { sortSkills } from "./common";
 import { Skill } from "./types";
+import { getObjects } from "./s3-media-api";
+import usePageTracking from "./usePageTracking";
 
 const SELECTED_SKILLS_STORAGE_KEY = 'sasha-makes-selected-skills';
 
@@ -121,6 +123,7 @@ const RouteLink = (props: CustomProps) => {
 
 export const PortfolioWebsite = () => {
   const { pathname } = useLocation();
+  usePageTracking();
 
   const [skills, skillCount] = useMemo(() => {
     const allSkills: Skill[] = [];
@@ -190,7 +193,6 @@ export const PortfolioWebsite = () => {
               </Section>
               <Routes>
                 <Route path={URLto.things} element={
-
                   <Section>
                     <div css={hideWhenSmallStyle}>
                       <HeadingItem>Skill filters <div css={navSectionHeaderButtonStyle}><Button spacing="compact" onClick={toggleSkillsFilterVisibility}>{isSkillFiltersOpen ? "Hide" : "Show"}</Button></div></HeadingItem>

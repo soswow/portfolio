@@ -53,7 +53,7 @@ export const PortfolioPage = ({
     }, [projectList]);
 
     const renderThumbnail = useCallback((project: Project) => (
-        <div css={thumbnailStyle}>
+        <div key={project.name} css={thumbnailStyle}>
             <ProjectThumbnail
                 key={project.name}
                 project={project}

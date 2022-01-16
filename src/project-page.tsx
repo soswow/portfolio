@@ -172,9 +172,9 @@ export const ProjectPage = () => {
             }
         </div>
 
-        {parts.map(({ name: partName, title, description = [] }) => <div css={partSectionStyle}>
+        {parts.map(({ name: partName, title, description = [] }) => <div key={partName} css={partSectionStyle}>
             <h2>{title || partName}</h2>
-            {description.map(paragraph => <ReactMarkdown>{paragraph}</ReactMarkdown>)}
+            {description.map((paragraph, i) => <ReactMarkdown key={i}>{paragraph}</ReactMarkdown>)}
 
             <div css={imagesCountainerStyle}>
                 {items.filter(({ details: { name: itemFileName } }) => itemFileName.indexOf(partName) > -1).map(item =>
