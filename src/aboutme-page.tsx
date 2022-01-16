@@ -34,7 +34,7 @@ Or simply write me a note to **soswow** (at) **gmail** (dot) **com**
     return (
         <div css={wrapperStyle}>
             <PageHeader>About me</PageHeader>
-            <img src="assets/myface.jpg" css={roundedImageStyle} width={500} />
+            <img src="/assets/myface.jpg" css={roundedImageStyle} width={500} />
             <ReactMarkdown children={aboutMe}/>
         </div>
     );
