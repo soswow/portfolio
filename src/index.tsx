@@ -33,7 +33,6 @@ import { getProjectList } from "./data";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { sortSkills } from "./common";
 import { Skill } from "./types";
-import { getObjects } from "./s3-media-api";
 import usePageTracking from "./usePageTracking";
 
 const SELECTED_SKILLS_STORAGE_KEY = 'sasha-makes-selected-skills';
