@@ -12,8 +12,6 @@ const exec = async (command) => {
 
     return execFunc(command);
 };
-// import * as path from 'path';
-// import * as fs from 'fs';
 
 const build = async () => {
     // const indexPath = path.resolve(__dirname, './index.html');

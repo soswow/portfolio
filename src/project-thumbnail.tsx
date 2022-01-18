@@ -1,12 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react";
-import { useEffect, useState } from "react";
-import { FileIdentifier, MediaCollectionItem } from '@atlaskit/media-client';
-import { Card } from '@atlaskit/media-card';
 import { colors } from "@atlaskit/theme";
-import { SimpleTag } from '@atlaskit/tag';
-import TagGroup from '@atlaskit/tag-group';
-import Spinner from '@atlaskit/spinner';
 import Lozenge from '@atlaskit/lozenge';
 import CommentIcon from '@atlaskit/icon/glyph/comment';
 import Badge from '@atlaskit/badge';
@@ -16,12 +10,11 @@ import ReactMarkdown from 'react-markdown'
 import Tooltip from '@atlaskit/tooltip';
 import PremiumIcon from '@atlaskit/icon/glyph/premium';
 
-
-import { config, findProjectCover } from './media-api';
-import { Project, skillToColourMap, statusToLozengeAppearanceMap } from "./types";
+import { Project, statusToLozengeAppearanceMap } from "./types";
 import { generatePath, useNavigate } from "react-router-dom";
 import { URLto } from "./urlto";
 import { renderSkills } from "./common";
+import { getProjectPartPictures } from "./data";
 
 
 interface Props {
@@ -32,7 +25,7 @@ interface Props {
 
 const getWrapperStyle = (isNew: boolean, favIconStyle?: boolean) => css`
     position: relative;
-    width: 300px;
+    width: 302px;
     border: 1px solid ${isNew ? colors.G400 : favIconStyle ? colors.N60 : colors.N40};
     border-radius: 3px;
     box-sizing: border-box;
@@ -46,27 +39,7 @@ const getWrapperStyle = (isNew: boolean, favIconStyle?: boolean) => css`
 
 const cardWrapper = css`
     margin: -5px;
-    * {
-        border-bottom-left-radius: 0 !important;
-        border-bottom-right-radius: 0 !important;
-    }
 `
-
-const cardPreloaderWrapper = css`
-    width: 298px;
-    height: 200px;
-    background: ${colors.N20};
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    margin: -5px;
-`;
-
-const titleStyle = css`
-    
-`;
-
 const titleRowStyle = css`
     margin-top: 12px;
     display: flex;
@@ -77,12 +50,15 @@ const titleRowStyle = css`
 
 const tagGroupWrapperStyle = css`
     margin-top: 15px;
+    flex-grow: 2;
+    display: flex;
+    align-items: flex-end;
 `;
 
-const badgesStyle = css`
-    display: flex;
-    align-items: center;
-`
+// const badgesStyle = css`
+//     display: flex;
+//     align-items: center;
+// `
 
 const unseenIconStyle = css`
     position: absolute;
@@ -104,6 +80,12 @@ const favIconStyle = css`
     height: 24px;
 `;
 
+const thumbnailImageStyle = css`
+    width: 300px;
+    height: 300px;
+    cursor: pointer;
+`;
+
 export const ProjectThumbnail = ({ project: {
     name,
     title,
@@ -112,21 +94,8 @@ export const ProjectThumbnail = ({ project: {
     shortSummary,
 }, isNew, isMyFavourite }: Props) => {
     const navigate = useNavigate();
-    const [coverItem, setCoverItem] = useState<MediaCollectionItem | null>(null);
 
-    const fetchCoverItem = async () => {
-        setCoverItem(await findProjectCover(name));
-    }
-
-    const getFileIdentifier = (id: string): FileIdentifier => ({
-        mediaItemType: 'file',
-        id,
-        collectionName: name,
-    });
-
-    useEffect(() => {
-        fetchCoverItem();
-    }, []);
+    const coverResource = getProjectPartPictures(name, 'Cover')[0];
 
     return <div css={getWrapperStyle(isNew, isMyFavourite)}>
         {isNew ? <div css={unseenIconStyle}>
@@ -140,20 +109,15 @@ export const ProjectThumbnail = ({ project: {
             </Tooltip>
         </div> 
         : null}
-        {coverItem ?
-            <div css={cardWrapper}>
-                <Card
-                    mediaClientConfig={config}
-                    identifier={getFileIdentifier(coverItem.id)}
-                    onClick={() => navigate(generatePath(URLto.thing, { projectName: name }))}
-                    disableOverlay={true}
-                    dimensions={{
-                        width: 298,
-                        height: 200,
-                    }}
-                />
-            </div>
-            : <div css={cardPreloaderWrapper}><Spinner /></div>}
+        
+        <div css={cardWrapper}>
+            <img 
+                src={coverResource.thumbnailX2}
+                srcSet={`${coverResource.thumbnail} 1x, ${coverResource.thumbnailX2} 2x`}
+                css={thumbnailImageStyle}
+                onClick={() => navigate(generatePath(URLto.thing, { projectName: name }))} 
+            />
+        </div>
 
         <div css={titleRowStyle}>
             <h3>{title}</h3>
@@ -163,7 +127,7 @@ export const ProjectThumbnail = ({ project: {
         <div css={tagGroupWrapperStyle}>
             {renderSkills(skills)}
         </div>
-        <div css={badgesStyle}>
+        {/* <div css={badgesStyle}>
             <CommentIcon label="comment-count" /><Badge><CommentCount
                 shortname='sashas-portfolio'
                 config={
@@ -174,6 +138,6 @@ export const ProjectThumbnail = ({ project: {
                     }
                 }
             /></Badge>
-        </div>
+        </div> */}
     </div>;
 }

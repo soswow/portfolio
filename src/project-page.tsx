@@ -1,39 +1,50 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react";
-import { FileIdentifier, MediaCollectionItem } from '@atlaskit/media-client';
-import { Card } from '@atlaskit/media-card';
-import Spinner from '@atlaskit/spinner';
-import { MediaViewerDataSource } from '@atlaskit/media-viewer';
-import { SimpleTag } from '@atlaskit/tag';
-import TagGroup from '@atlaskit/tag-group';
 import Lozenge from '@atlaskit/lozenge';
 import Breadcrumbs, { BreadcrumbsItem } from '@atlaskit/breadcrumbs';
 import PageHeader from '@atlaskit/page-header';
 import { colors } from "@atlaskit/theme";
 import { DiscussionEmbed } from 'disqus-react';
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from 'react-markdown';
 
-import { getProjectList } from "./data";
-import { config, getCollectionItems } from './media-api';
-import { useEffect, useState } from "react";
+import LightGallery from 'lightgallery/react';
+
+// import styles
+import 'lightgallery/css/lightgallery.css';
+import 'lightgallery/css/lg-zoom.css';
+import 'lightgallery/css/lg-thumbnail.css';
+import 'lightgallery/css/lg-fullscreen.css';
+import 'lightgallery/css/lg-video.css';
+
+// import plugins if you need
+import lgThumbnail from 'lightgallery/plugins/thumbnail';
+import lgZoom from 'lightgallery/plugins/zoom';
+import lgFullScreen from 'lightgallery/plugins/fullscreen';
+import lgHash from 'lightgallery/plugins/hash';
+import lgVideo from 'lightgallery/plugins/video';
+
+import ReactGA from "react-ga";
+
+import { getProjectList, getProjectPartPictures } from "./data";
+import { useCallback, useEffect } from "react";
 import { statusToLozengeAppearanceMap } from "./types";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { URLto } from "./urlto";
 import { markAsSeen } from "./localStorage";
 import { renderSkills } from "./common";
+import { AfterSlideDetail } from "lightgallery/lg-events";
 
-const singleImageStyle = css`
-
-`;
+const WIDTH = 910;
 
 const projectPageStyle = css`
     margin: 0 auto;
+    max-width: ${WIDTH}px;
 `;
 
 const imagesCountainerStyle = css`
     display: flex;
     flex-wrap: wrap;
-    max-width: 900px;
+    max-width: ${WIDTH}px;
     margin-top: 10px;
     gap: 5px;
 `;
@@ -50,12 +61,12 @@ const tagGroupWrapperStyle = css`
 `;
 
 const partSectionStyle = css`
-    max-width: 900px;
+    max-width: ${WIDTH}px;
     margin-top: 25px;
 `;
 
 const coverCardPreloaderWrapper = css`
-    max-width: 900px;
+    max-width: ${WIDTH}px;
     height: 500px;
     background: ${colors.N20};
     display: flex;
@@ -64,24 +75,44 @@ const coverCardPreloaderWrapper = css`
     justify-content: center;
 `;
 
-const coverImageStyle = css`
-    margin-top: 15px;
-    max-width: 900px;
-`;
-
 const commentsWrapperStyle = css`
     margin-top: 45px;
 `;
 
+const thumbnailImageStyle = css`
+    width: 300px;
+    height: 300px;
+`
+
+const coverImageLinkWrapperStyle = css`
+    text-align: center;
+    max-width: ${WIDTH}px;
+`
+
+const coverImageStyle = css`
+    margin-top: 15px;
+    max-width: 100%;
+    max-height: 500px;
+`;
+
+const imageThumbnailStyle = css`
+    display: inline-block;
+    height: 300px;
+`;
+
+const videoThumbnailStyle = css`
+    cursor: pointer;
+    ${imageThumbnailStyle}
+`;
+
 const fileNameRegexp = /^(\d{8})_(\d{6})_(.*)\..*$/;
 export const ProjectPage = () => {
-    const [items, setItems] = useState<MediaCollectionItem[]>([]);
     const { projectName } = useParams();
     const navigate = useNavigate();
 
     const project = getProjectList().find(({ name }) => name === projectName);
 
-    if (!project) {
+    if (!project || !projectName) {
         return <Navigate to={URLto.things} />;
     }
 
@@ -95,43 +126,37 @@ export const ProjectPage = () => {
         status,
     } = project;
 
-    const loadItems = async () => {
-        const collectionItems = await getCollectionItems(name);
-        collectionItems.sort(({ details: { name: nameA } }, { details: { name: nameB } }) => {
-            const [_, dateStrA, timeStrA, partNameA] = fileNameRegexp.exec(nameA) || [];
-            const [__, dateStrB, timeStrB, partNameB] = fileNameRegexp.exec(nameB) || [];
-
-            const partsWithCover = [{ name: 'Cover' }, ...project.parts];
-            const partAIndex = partsWithCover.findIndex(part => part.name === partNameA);
-            const partBIndex = partsWithCover.findIndex(part => part.name === partNameB);
-            if (partAIndex === -1 || partBIndex === -1) {
-                console.error("one of the part names in file doesn't match site data");
-            }
-            const partsCompare = partAIndex - partBIndex;
-            if (partsCompare !== 0) {
-                return partsCompare;
-            } else {
-                return parseInt(dateStrA + timeStrA, 10) - parseInt(dateStrB + timeStrB, 10);
-            }
-        });
-        setItems(collectionItems);
-    }
-
-    const getFileIdentifier = (id: string): FileIdentifier => ({
-        mediaItemType: 'file',
-        id,
-        collectionName: name,
-    });
-
     useEffect(() => {
-        loadItems();
         markAsSeen(name);
+        window.scrollTo(0, 0);
     }, [])
 
-    const mediaViewerDataSource: MediaViewerDataSource = {
-        collectionName: name,
-        list: items.map(item => getFileIdentifier(item.id))
-    }
+    const onPictureViewed = useCallback((details: AfterSlideDetail) => {
+        const index = details.index;
+        let localIndex: number | null = null;
+        let partName: string | null = null;
+        if (index === 0) {
+            localIndex = 0;
+            partName = 'Cover';
+        } else {
+            let memo = 1; // 1 for Cover
+            for (const { name } of parts) {
+                const imagesInPartLenght = getProjectPartPictures(projectName, name).length;
+                if (index >= memo && index < memo + imagesInPartLenght) {
+                    localIndex = index - memo;
+                    partName = name;
+                    break;
+                }
+                memo += imagesInPartLenght;
+            }
+        }
+        ReactGA.event({
+            category: 'Pictures',
+            action: 'view',
+            label: `${projectName}/${partName}/${localIndex}`,
+        });
+    }, [projectName, parts]);
+
 
     const breadcrumbs = (
         <Breadcrumbs>
@@ -139,7 +164,8 @@ export const ProjectPage = () => {
             <BreadcrumbsItem text={title} />
         </Breadcrumbs>
     );
-    
+
+    const coverResource = getProjectPartPictures(projectName, 'Cover')[0];
 
     return <div css={projectPageStyle}>
 
@@ -154,45 +180,73 @@ export const ProjectPage = () => {
             Skills applied: {renderSkills(skills)}
         </div>
 
-        <div css={coverImageStyle}>
-            {
-                items.length === 0 ?
-                    <div css={coverCardPreloaderWrapper}><Spinner /></div> :
-                    <Card
-                        mediaClientConfig={config}
-                        mediaViewerDataSource={mediaViewerDataSource}
-                        identifier={getFileIdentifier(items[0].id)}
-                        disableOverlay={true}
-                        shouldOpenMediaViewer={true}
-                        dimensions={{
-                            width: '100%',
-                            height: 500
-                        }}
-                    />
-            }
-        </div>
+        <LightGallery
+            selector='a'
+            mode="lg-fade"
+            speed={10}
+            backdropDuration={50}
+            actualSize={false}
+            showZoomInOutIcons={true}
+            customSlideName={true}
+            autoplayVideoOnSlide={true}
+            onAfterSlide={onPictureViewed}
+            plugins={[lgThumbnail, lgZoom, lgFullScreen, lgHash, lgVideo]}
+        >
 
-        {parts.map(({ name: partName, title, description = [] }) => <div key={partName} css={partSectionStyle}>
-            <h2>{title || partName}</h2>
-            {description.map((paragraph, i) => <ReactMarkdown key={i}>{paragraph}</ReactMarkdown>)}
-
-            <div css={imagesCountainerStyle}>
-                {items.filter(({ details: { name: itemFileName } }) => itemFileName.indexOf(partName) > -1).map(item =>
-                    <div css={singleImageStyle} key={item.id}>
-                        <Card
-                            mediaClientConfig={config}
-                            identifier={getFileIdentifier(item.id)}
-                            shouldOpenMediaViewer={true}
-                            mediaViewerDataSource={mediaViewerDataSource}
-                            disableOverlay={true}
-                            dimensions={{
-                                width: 295,
-                                height: 295
-                            }}
-                        />
-                    </div>)}
+            <div css={coverImageLinkWrapperStyle}>
+                <a
+                    data-slide-name={coverResource.filename}
+                    {...(coverResource.videoData ? {
+                        css: videoThumbnailStyle,
+                        'data-video': JSON.stringify(coverResource.videoData),
+                        'data-poster': coverResource.thumbnailX2
+                    } : {
+                        href: coverResource.resource,
+                        css: imageThumbnailStyle,
+                    })}
+                >
+                    <img css={coverImageStyle} src={coverResource.videoData ? coverResource.videoPoster : coverResource.resource} alt={`Cover image for ${projectName} project`} />
+                </a>
             </div>
-        </div>)}
+
+
+            {parts.map(({ name: partName, title, description = [] }) => <div key={partName} css={partSectionStyle}>
+                <h2>{title || partName}</h2>
+                {description.map((paragraph, i) => <ReactMarkdown key={i}>{paragraph}</ReactMarkdown>)}
+
+                <div css={imagesCountainerStyle}>
+                    {getProjectPartPictures(projectName, partName).map(({
+                        resource,
+                        filename,
+                        thumbnail,
+                        thumbnailX2,
+                        videoData,
+                        videoPoster
+                    }) => (
+                        <a
+                            key={filename}
+                            data-slide-name={filename}
+                            {...(videoData ? {
+                                css: videoThumbnailStyle,
+                                'data-video': JSON.stringify(videoData),
+                                'data-poster': videoPoster
+                            } : {
+                                href: resource,
+                                css: imageThumbnailStyle,
+                            })}
+                        >
+                            <img
+                                css={thumbnailImageStyle}
+                                alt={title || partName}
+                                src={thumbnailX2}
+                                srcSet={`${thumbnail} 1x, ${thumbnailX2} 2x`}
+                            />
+                        </a>
+                    )
+                    )}
+                </div>
+            </div>)}
+        </LightGallery>
 
         <div css={commentsWrapperStyle}>
             <DiscussionEmbed

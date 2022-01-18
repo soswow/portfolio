@@ -1,4 +1,44 @@
 import { Project } from "./types";
+import data from '../../media-uploader/to-upload/index.json';
+
+const CLOUDFRONT_URL = 'https://d2f1ddab4mp87f.cloudfront.net';
+const fileNameRegexp = /^(\d{8})_(\d{6})/;
+
+const getName = (path: string) => path.substring(path.lastIndexOf('/') + 1);
+const getBase = (fileName: string) => fileName.substring(0, fileName.lastIndexOf('.'));
+
+export const getProjectPartPictures = (project: string, part: string) => {
+    const paths = data.filter(path => path.startsWith(`${project}/${part}`));
+
+    paths.sort((a, b) => {
+        const [_, dateStrA, timeStrA] = fileNameRegexp.exec(getName(a)) || [];
+        const [__, dateStrB, timeStrB] = fileNameRegexp.exec(getName(b)) || [];
+
+        return parseInt(dateStrA + timeStrA, 10) - parseInt(dateStrB + timeStrB, 10);
+    });
+
+    return paths.map(path => {
+        const fileName = getName(path);
+        const isMP4 = fileName.toLowerCase().endsWith('.mp4');
+        const isMOV = fileName.toLowerCase().endsWith('.mov');
+        const resourceFullPath = encodeURI(`${CLOUDFRONT_URL}/${path}`);
+        const videoData = isMOV || isMP4 ? {
+            "source": [
+                { "src": resourceFullPath, "type": isMP4 ? "video/mp4" : "video/quicktime"}
+            ],
+            "attributes": { "preload": false, "playsinline": true, "controls": true },
+        } : null;
+        
+        return {
+            filename: getName(path),
+            resource: resourceFullPath,
+            thumbnail: encodeURI(`${CLOUDFRONT_URL}/${path.substring(0, path.lastIndexOf('/'))}/thumbnails/${fileName}.jpg`),
+            thumbnailX2: encodeURI(`${CLOUDFRONT_URL}/${path.substring(0, path.lastIndexOf('/'))}/thumbnails-x2/${fileName}.jpg`),
+            videoPoster: encodeURI(`${CLOUDFRONT_URL}/${path.substring(0, path.lastIndexOf('/'))}/thumbnails/${fileName}.poster.jpg`),
+            videoData,
+        }
+    });
+}
 
 export const getProjectList: () => Project[] = () => [
     {
@@ -149,7 +189,7 @@ export const getProjectList: () => Project[] = () => [
         myFavourite: true,
         shortSummary: "I've 3D modelled from scratch, printed and painted a gun from Final Space show.",
         description: [
-`Couple of years ago I really liked Final Space show on Netflix. Animation and the story behind its creation were wonderful. 
+            `Couple of years ago I really liked Final Space show on Netflix. Animation and the story behind its creation were wonderful. 
         
 I don't remember already why I decided to replicate one of the props from this show, but I did. This gun was the main weapon of choice of the main protagonist - Gary.
 
@@ -160,43 +200,43 @@ If you want make your own it's free [over here](https://cults3d.com/en/3d-model/
             {
                 name: 'References',
                 description: [
-`As you can see this is an animated show, which is interesting in terms of replicating a prop that doesn't exist in the real world. And since it's not 3D rendered or real part it can be drawn differently from frame to frame.
+                    `As you can see this is an animated show, which is interesting in terms of replicating a prop that doesn't exist in the real world. And since it's not 3D rendered or real part it can be drawn differently from frame to frame.
 `]
             },
             {
                 name: 'Outline',
                 description: [
-`I've created side outline that I was using during 3D modelling.
+                    `I've created side outline that I was using during 3D modelling.
 `]
             },
             {
                 name: '3D Modelling',
                 description: [
-`It was some years ago and I believe this was my first time modelling something from a movie or a show.
+                    `It was some years ago and I believe this was my first time modelling something from a movie or a show.
 `]
             },
             {
                 name: '3D Printing',
                 description: [
-`It was the time when I was printing on a cheap FDM printer (which still works). You can see I've smartly chopped up the model into easily printable pieces (+ this separation would help during the painting stage)
+                    `It was the time when I was printing on a cheap FDM printer (which still works). You can see I've smartly chopped up the model into easily printable pieces (+ this separation would help during the painting stage)
 `]
             },
             {
                 name: 'Priming and Sanding',
                 description: [
-`Standard set of a couple of layers of a filler *primer -> sanding -> putty -> sanding* cycle.
+                    `Standard set of a couple of layers of a filler *primer -> sanding -> putty -> sanding* cycle.
 `]
             },
             {
                 name: 'Painting',
                 description: [
-`I believe this was one of my first Airbrushing projects with a crappy compressor. All the masking was also one of my first on.
+                    `I believe this was one of my first Airbrushing projects with a crappy compressor. All the masking was also one of my first on.
 `]
             },
             {
                 name: 'Result',
                 description: [
-`I've modelled an extra holding part to hold it in place. I wonder if you can see, but I screwed up a colour scheme a bit in one place =)
+                    `I've modelled an extra holding part to hold it in place. I wonder if you can see, but I screwed up a colour scheme a bit in one place =)
 `]
             },
         ],
@@ -211,7 +251,7 @@ If you want make your own it's free [over here](https://cults3d.com/en/3d-model/
 I am one of those who shares an opinion that The Orville tv show — is the better Star Trek than Discovery.
 
 I liked it. I wanted to make a prop from the show. It was clear that the main banana-shaped blaster would become an obvious choice for many prop makers. To be a bit special I've chosen PM-32 gun. At the time when I started modelling there was no model done by anyone. So naturally, I've taken it upon myself as a challenge to model and make it from start to finish. As you can see "finish" hasn't come just yet. Soon.`
-],
+        ],
         status: 'WIP',
         parts: [
             {
@@ -362,7 +402,7 @@ And if you are wondering - yes, you can clip it. It has 2 magnets that you can u
         myFavourite: true,
         shortSummary: "A custom-designed, programable LED tie that can react to music",
         description: [
-`I love the attention to myself + I know one or two things about making, so it was no brained to make a tie with addressable RGB LEDs that would jump in down to the music at our next corporate party.
+            `I love the attention to myself + I know one or two things about making, so it was no brained to make a tie with addressable RGB LEDs that would jump in down to the music at our next corporate party.
 
 It was a very fun project where I've combined all of the fun things I like: programming, making, lights.`
         ],
@@ -376,20 +416,22 @@ I couldn't find a model for the one cell itself. There were many small parts, li
 The second picture shows a specially made clicker that I would hold in my hand during the event to switch animation programs. It was pretty sketchy, I had a vest full of electronics, wires, batter and in my hand, I had a black clicker with one big button. 😅
 `]
             },
-            {name: 'Experimentation', description: [
-`
+            {
+                name: 'Experimentation', description: [
+                    `
 The initial idea was to print on fabric. You can see the scales test I did first. It worked well, but scaling it to a full tie length would be hard or even impossible. 
 
 You can also see I was playing with the idea of enclosing LED inside the 3D part during the print. It is possible, but soldering would be a pain.
-`]},
-                {
-name: 'Bowtie test',
-description: [
-`
+`]
+            },
+            {
+                name: 'Bowtie test',
+                description: [
+                    `
 Before going full-on tie I decided to try all the technical aspects on a smaller scale.
 `
-]
-                },
+                ]
+            },
             {
                 name: '3D printing',
                 description: [`
@@ -444,7 +486,7 @@ I've recorded myself playing with that another day. I think it has some bug, reg
 That thing was extremely bright, so you could still see its effect even when I was outside during the full sun.
 `]
             },
-            
+
             {
                 name: 'Result',
                 description: [`

@@ -8,21 +8,25 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { loadStorageValue } from "./localStorage";
 import { Project, Skill } from "./types";
 
+const GAP = 10;
+const ITEM_WIDTH = 300;
+const ITEM_BORDER = 1;
+const WIDTH = (ITEM_WIDTH + ITEM_BORDER * 2) * 3 + GAP * 2;
+
 const imagesCountainerStyle = css`
     display: flex;
     flex-wrap: wrap;
-    max-width: 915px;
+    max-width: ${WIDTH}px;
     margin-top: 15px;
+    gap: ${GAP}px;
+    align-items: stretch;
 `;
 
 const listingPageStyle = css`
-    max-width: 915px;
+    max-width: ${WIDTH}px;
     margin: 0 auto;
+    padding-bottom: 20px;
 `
-
-const thumbnailStyle = css`
-    padding: 5px 5px 0 0;
-`;
 
 interface Props {
     selectedSkills: Record<Skill, boolean>;
@@ -32,7 +36,7 @@ export const PortfolioPage = ({
     selectedSkills
 }: Props) => {
     const [newItems, setNewItems] = useState<string[]>([]);
-    const projectList = useMemo(() => {        
+    const projectList = useMemo(() => {
         const projects = getProjectList();
         return projects.filter(
             ({ skills }) => skills.reduce<boolean>(
@@ -53,14 +57,12 @@ export const PortfolioPage = ({
     }, [projectList]);
 
     const renderThumbnail = useCallback((project: Project) => (
-        <div key={project.name} css={thumbnailStyle}>
-            <ProjectThumbnail
-                key={project.name}
-                project={project}
-                isNew={newItems.indexOf(project.name) > -1}
-                isMyFavourite={newItems.length === 0 ? (project.myFavourite || false) : false}
-            />
-        </div>
+        <ProjectThumbnail
+            key={project.name}
+            project={project}
+            isNew={newItems.indexOf(project.name) > -1}
+            isMyFavourite={newItems.length === 0 ? (project.myFavourite || false) : false}
+        />
     ), [newItems]);
 
     projectList.sort((projA, projB) => {
