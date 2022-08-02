@@ -106,6 +106,110 @@ export const getProjectList: () => Project[] = () => [
         ]
     },
     {
+        name: 'kaluga',
+        title: 'Tau inpired 3D printed mini',
+        shortSummary: '3D printed painted mini',
+        myFavourite: true,
+        status: 'Done',
+        description: [`
+I printed files some time ago but recently pushed myself to actually paint it. I've used a lot of techniques that I haven't tried before on this one.
+
+It took me 25 days to complete working on it every day bit by bit.
+
+Design files are by poyper - [https://linktr.ee/poyper](https://linktr.ee/poyper)
+`],
+        parts: [
+            {
+                name: '3D printing',
+                description: ['This kit comes in many parts and can be assembled in a ton of different ways. So, the first stop was to choose parts and print them.',
+            'Then I need to glue everything together while thinking about modularity (for painting sake) as well as pose it will have in the end.',
+        'I\'ve decided to sand all the big flat surfaces so no print lines are visible throughout the model.']
+            },
+            {
+                name: 'Embedded leds',
+                description: ["Something I've seen people do is OSL (Object source light), but when done on his right arm it would be dark inside and OSL would feel strange",
+            "I thought about passing wires down to the base, but the idea was a bit too late at this point. Instead, I've figured a way to embed the smallest batteries inside the arm itself.",
+        "Not sure if I wired SMD components before. I guess that was first as well."]
+            },
+            {
+                name: 'Priming',
+                description: ["On this project I wanted to try as many new things as possible. One of them is 'zenithal highlight'.",
+            "It's only then I realized that this would make so many more things unnecessarily complicated:",
+        `
+1) I would need to use some sort of translucent paint for the base coat, since if I use fully opaque - what is the point of zenithal
+2) All the highlights might not make sense, since those would probably be opaque color itself and won't follow the zenithal tone
+3) In my case standard washes would dull the colour and it won't be possible to normally reapply the base, since it is gradual everyone already
+        `]
+            },
+            {
+                name: 'Red base',
+                description: ["I've used red ink, which worked fine."]
+            },
+            {
+                name: 'Black base',
+                description: ["This step took a lot of time - carefully picking up all the parts that going to be metal and painting them with the brush."]
+            },
+            {
+                name: 'White base',
+                description: ["Since this is supposed to be Farsight sept, it needs to have white patches here and there. As you might know, working with white is super hard. So I tried to be smart about it and used several layers of increasingly whiter paint.",
+            "I tried to be smart and use masking as a template to create some shapes on wings and the front."]
+            },
+            {
+                name: 'Panel line shading',
+                description: ["As stated above standard shade washes wouldn't work here. So, I've used what Gunpla people use."]
+            },
+            {
+                name: 'Metal base',
+                description: ["I have a lot of paints. ... and I mean A LOT. This doesn't help when you need to pick a color. I couldn't resist and used might be up to 10-15 different metallic paints on all the metal parts. This step took me a while."]
+            },
+            {
+                name: 'Metal shading',
+                description: ["Nuln Oil for the win!"]
+            },
+            {
+                name: 'Edge highlighting',
+                description: ["I didn't spend a crazy amount of time doing manual edge highlight, but since this is what expected, I did enough."]
+            },
+            {
+                name: 'Blue glow',
+                description: ["That was another big new thing for me. After watching a bunch of videos I thought I know what needs to be done. You be the judge. At this point I don't know if it worked out as I planned."]
+            },
+            {
+                name: 'Base',
+                description: [`Base didn't take that much of a time comparatively. But I tried to use all sorts of tricks here:
+* Used contrast paint for different parts (rocks, big rocks, outside dirt rim)
+* Used dry brushing with several green colors to build up, what I was hoping would look like moss on stones bellow
+* I've glued on homemade grass bushes here and there (I own DIY electrostatic machine that I used to make those bushes)
+* I've put gloss in between stones as well as big boulder crevises to make it look like a damp part
+`]
+            },
+            {
+                name: 'Weathering',
+                description: ["I've used the classic technique of water-soluble oil paints (black and Siena) to add all the machine oil grime to metal parts, especially parts like joints etc."]
+            },
+            {
+                name: 'Decals',
+                description: ["This was another big news for me. Not only I've never applied decals before, I thought it would be cool to use custom printed ones.",
+            "I've designed graphics, including Farsight sept symbol, in Inkscape, printed them, sealed them, applied them, varnished on top. and tried to sand  ... didn't work out, but who cares.",
+            "Bonus points if you can read what 6 symbols on his back says ;-)"]
+            },
+            {
+                name: 'Pinning',
+                description: ["Just gluing this guy to the base wouldn't work. So, I've used metal pins to add extra stability. Both from legs to the platform, as well as between lower and higher bodies."]
+            },
+            {
+                name: 'Final photoshoot',
+                description: ['To show off all the good work done here good photos are in order. Again, new thing for me. Never done that level of mini-photography.',
+            "I've converted my DIY light (that uses all the good high CRI leds) into more like a softbox, got out my EVA foam that still waiting to be used for some cosplay and went for it.",
+        "Oh, and I also painted my turn table, which is normally white, to black.",
+    "And after all that — still I've managed to leave the cord in all the good shots 🤦🏼‍♂️"]
+            },
+        ],
+        skills: [
+            '3D printing', 'Airbrush painting', 'Electronics', 'Surface prep', 'Weathering', 'Brush painting'
+        ]
+    },
+    {
         name: 'halo-plasma-blaster',
         title: 'Halo Plasma Blaster',
         skills: [
@@ -250,9 +354,12 @@ If you want make your own it's free [over here](https://cults3d.com/en/3d-model/
         description: [`
 I am one of those who shares an opinion that The Orville tv show — is the better Star Trek than Discovery.
 
-I liked it. I wanted to make a prop from the show. It was clear that the main banana-shaped blaster would become an obvious choice for many prop makers. To be a bit special I've chosen PM-32 gun. At the time when I started modelling there was no model done by anyone. So naturally, I've taken it upon myself as a challenge to model and make it from start to finish. As you can see "finish" hasn't come just yet. Soon.`
+I liked it. I wanted to make a prop from the show. It was clear that the main banana-shaped blaster would become an obvious choice for many prop makers. To be a bit special I've chosen PM-32 gun. At the time when I started modelling there was no model done by anyone. So naturally, I've taken it upon myself as a challenge to model and make it from start to finish. As you can see "finish" hasn't come just yet. Soon.
+
+Files can be found over here - [https://cults3d.com/en/3d-model/art/pm-32-blaster-from-the-orville](https://cults3d.com/en/3d-model/art/pm-32-blaster-from-the-orville)
+`
         ],
-        status: 'WIP',
+        status: 'Done',
         parts: [
             {
                 name: 'References',
@@ -291,14 +398,14 @@ There was a bunch of printing defects, so putty was applied and sanded down.
                 name: 'Painting',
                 description: [`
 As you can see I haven't been done with it just yet. White is notoriously hard to work with. All the black grip parts were sprayed with Plasti Dip.
-
-Going forward what I still need to do is:
-* more white coats to get rid of blue tint
-* paint 3 parts flat aluminium
-* Add heat scorched metal effect on the barrel and its shroud
-* Glue all together and varnish
 `]
             },
+            {
+                name: 'Result',
+                description: [`
+I've done almost all the remaining steps. The one last one is to do some gloss varnish on white and silver.
+                `]
+            }
         ],
         skills: ['3D modelling', '3D printing', 'Airbrush painting', 'Surface prep']
     },
@@ -965,11 +1072,63 @@ Unfortunately, the whole FFT music sensing got screwed. Music in the event was m
 `]
             },
             {
-                name: 'Lights',
+                name: 'LEDs',
                 description: [`
 `]
             },
         ],
         skills: ['Own design', 'Woodworking', '3D modelling']
+    },
+    {
+        name: 'fennec-drone',
+        title: 'Fennec Shand Reconnaissance Drone',
+        shortSummary: 'Drone from 4th ep. of The Book of Boba Fett show.',
+        status: 'Done',
+        description: [`
+After watching the episode I thought it would be a fun project to pull off before the next episode next week. I think it worked out well.
+
+I've modelled, 3D printed, sanded, painted, weathered and made it light up!
+
+Files can be found over here - [https://cults3d.com/en/3d-model/art/fennec-shand-reconnaissance-drone](https://cults3d.com/en/3d-model/art/fennec-shand-reconnaissance-drone)
+`],
+        parts: [
+            {
+                name: 'Reference',
+                description: ['All the shots of this drone are during the night']
+            },
+            {
+                name: '3D Modelling',
+                description: ['Modelled in Fusion. It was pretty tricky to make those slots. Working on top of a sphere is hard.']
+            },
+            {
+                name: '3D Printing',
+                description: ["I've printed two copies just in case. The Second one taken by my younger son and I had to paint it as well."]
+            },
+            {
+                name: 'Electronics',
+                description: ["I've made something funky - two pairs of magnets are holding two domes together and also act as a switch connecting lights to the battery."]
+            },
+            {
+                name: 'Painting',
+                description: [`
+There was a lot of painting involved:
+* Prime black
+* Gunmetal
+* Gloss black on round bits
+* Several layers of different brown/red on those bits
+* Gloss varnish on top of them
+* Nuln Oil over everything
+* Weathering with oil paints (burned sienna and ivory black)
+* wipe everything out
+`]
+            },
+            {
+                name: 'Final Result',
+                description: ['Nice little prop']
+            }
+        ],
+        skills: [
+            '3D modelling', '3D printing', 'Airbrush painting', 'Electronics', 'Surface prep', 'Weathering'
+        ]
     }
 ];
