@@ -192,7 +192,6 @@ export const ProjectPage = () => {
             onAfterSlide={onPictureViewed}
             plugins={[lgThumbnail, lgZoom, lgFullScreen, lgHash, lgVideo]}
         >
-
             <div css={coverImageLinkWrapperStyle}>
                 <a
                     data-slide-name={coverResource.filename}

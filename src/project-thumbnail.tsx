@@ -39,6 +39,9 @@ const getWrapperStyle = (isNew: boolean, favIconStyle?: boolean) => css`
 
 const cardWrapper = css`
     margin: -5px;
+    img {
+        border-radius: 2px;
+    }
 `
 const titleRowStyle = css`
     margin-top: 12px;

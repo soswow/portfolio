@@ -45,3 +45,14 @@ export interface Project {
     parts: Part[];
     myFavourite?: boolean;
 }
+
+export type VisualArtTag  = 'graphite' | 'ink' | 'inkwash' | 'watercolor' | 'markers' | 'urban_sketching' | 'digital';
+
+export interface VisualArtPiece {
+    name: string;
+    filename: string;
+    folder: string;
+    proudness: number; // 0 - 10
+    tags?: VisualArtTag[];
+    description?: string;
+}

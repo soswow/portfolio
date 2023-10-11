@@ -14,8 +14,9 @@ import {
 } from '@atlaskit/side-navigation';
 import Button, { ButtonGroup } from '@atlaskit/button';
 import Toggle from '@atlaskit/toggle';
-import FolderFilledIcon from '@atlaskit/icon/glyph/folder-filled';
+import ShipIcon from '@atlaskit/icon/glyph/ship';
 import PersonIcon from '@atlaskit/icon/glyph/person';
+import BrushIcon from '@atlaskit/icon/glyph/media-services/brush';
 
 import {
   Routes,
@@ -28,6 +29,7 @@ import {
 import { AboutMePage } from './aboutme-page';
 import { PortfolioPage } from './portforlio-page';
 import { ProjectPage } from "./project-page";
+import { VisualArtsPage } from "./visual-arts-page";
 import { URLto } from "./urlto";
 import { getProjectList } from "./data";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -187,7 +189,8 @@ export const PortfolioWebsite = () => {
                 </div>
                 <NavigationContent>
                   <CustomItem iconBefore={<PersonIcon label="about-me-page" />} component={RouteLink} href={URLto.aboutMe} isSelected={pathname.startsWith(URLto.aboutMe)}><div css={hideWhenSmallStyle}>About me</div></CustomItem>
-                  <CustomItem iconBefore={<FolderFilledIcon label="things-page" />} component={RouteLink} href={URLto.things} isSelected={pathname.startsWith(URLto.things)}><div css={hideWhenSmallStyle}>Things I've made</div></CustomItem>
+                  <CustomItem iconBefore={<ShipIcon label="things-page" />} component={RouteLink} href={URLto.things} isSelected={pathname.startsWith(URLto.things)}><div css={hideWhenSmallStyle}>Things I've made</div></CustomItem>
+                  <CustomItem iconBefore={<BrushIcon label="things-page" />} component={RouteLink} href={URLto.visualArts} isSelected={pathname.startsWith(URLto.visualArts)}><div css={hideWhenSmallStyle}>Things I've drawn</div></CustomItem>
                 </NavigationContent>
               </Section>
               <Routes>
@@ -233,6 +236,7 @@ export const PortfolioWebsite = () => {
             <Route path={URLto.aboutMe} element={<AboutMePage />} />
             <Route path={URLto.things} element={<PortfolioPage selectedSkills={selectedSkills} />} />
             <Route path={URLto.thing} element={<ProjectPage />} />
+            <Route path={URLto.visualArts} element={<VisualArtsPage />} />
           </Routes>
         </div>
       </div>
