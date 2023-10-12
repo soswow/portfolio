@@ -7,6 +7,7 @@ import { colors } from "@atlaskit/theme";
 // import Lozenge from "@atlaskit/lozenge";
 import TagGroup from "@atlaskit/tag-group";
 import { SimpleTag, TagColor } from "@atlaskit/tag";
+import ReactMarkdown from "react-markdown";
 
 const thumbnailImageStyle = css`
     width: 300px;
@@ -59,9 +60,12 @@ interface Props {
 }
 
 const visualArtTagNames: {[key in VisualArtTag]: string} = {
+    gouache: 'Gouache',
+    color_pencil: 'Color pencil',
     ink: 'Ink',
     digital: 'Digital',
     graphite: 'Graphite',
+    pencil: 'Pencil',
     inkwash: 'Ink wash',
     markers: 'Markers',
     'urban_sketching': 'Urban Sketching',
@@ -69,9 +73,12 @@ const visualArtTagNames: {[key in VisualArtTag]: string} = {
 };
 
 const visualArtTagColors: {[key in VisualArtTag]: TagColor} = {
-    ink: 'standard',
-    digital: 'purple',
-    graphite: 'grey',
+    gouache: 'yellowLight',
+    color_pencil: 'purple',
+    ink: 'grey',
+    digital: 'purpleLight',
+    graphite: 'standard',
+    pencil: 'standard',
     inkwash: 'greyLight',
     markers: 'redLight',
     'urban_sketching': 'blue',
@@ -80,7 +87,7 @@ const visualArtTagColors: {[key in VisualArtTag]: TagColor} = {
 
 export const VisualArtPieceThumbnail = ({artPiece}: Props) => {
     
-    const {filename, name, tags} = artPiece;
+    const {filename, name, tags, description} = artPiece;
     const {thumbnail, thumbnailX2, resource} = getArtPiecePartPictures(artPiece);
     
     return <div css={getWrapperStyle(false, false)}>
@@ -101,7 +108,7 @@ export const VisualArtPieceThumbnail = ({artPiece}: Props) => {
         <div css={titleRowStyle}>
             <h3>{name}</h3>
         </div>
-        {/* <ReactMarkdown>{shortSummary}</ReactMarkdown> */}
+        {description ? <ReactMarkdown>{description}</ReactMarkdown> : null}
         {tags ? <div css={tagGroupWrapperStyle}>
             <TagGroup>
                 {tags.map(tag => <SimpleTag key={tag} text={visualArtTagNames[tag]} color={visualArtTagColors[tag]} />)}

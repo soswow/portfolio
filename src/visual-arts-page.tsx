@@ -94,7 +94,12 @@ export const VisualArtsPage = () => {
             showZoomInOutIcons={true}
             customSlideName={true}
             autoplayVideoOnSlide={true}
-            // onAfterSlide={onPictureViewed}
+            thumbHeight="70px"
+            thumbWidth={70}
+            hideBarsDelay={100}
+            // toggleThumb={true}
+            thumbnail={true}
+            allowMediaOverlap={true}
             plugins={[lgThumbnail, lgZoom, lgFullScreen, lgHash, lgVideo]}
         >
             <div css={imagesCountainerStyle}>

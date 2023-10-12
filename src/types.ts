@@ -46,7 +46,17 @@ export interface Project {
     myFavourite?: boolean;
 }
 
-export type VisualArtTag  = 'graphite' | 'ink' | 'inkwash' | 'watercolor' | 'markers' | 'urban_sketching' | 'digital';
+export type VisualArtTag  = 
+    | 'gouache' 
+    | 'color_pencil'
+    | 'graphite' 
+    | 'pencil'
+    | 'ink' 
+    | 'inkwash' 
+    | 'watercolor'
+    | 'markers'
+    | 'urban_sketching'
+    | 'digital';
 
 export interface VisualArtPiece {
     name: string;

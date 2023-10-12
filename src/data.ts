@@ -1143,600 +1143,595 @@ There was a lot of painting involved:
 
 export const getVisualArtPieces: () => VisualArtPiece[] = () => [
     {
-        name: 'Mediation room',
-        folder: '20220811-mediation-room',
-        filename: '20220811_023304.jpeg',
-        proudness: 4,
-        tags: [],
-        description: ''
+      proudness: 10,
+      tags: ['color_pencil'],
+      description: 'Rendering of a Superb fairywren photo I took using color pencils',
+      name: 'Superb fairy wren color pencil',
+      folder: '20221227-superb-fairy-wren-color-pencil',
+      filename: '20221227_033044.jpeg'
     },
     {
-        name: 'Football club house',
-        folder: '20220813-football-club-house',
-        filename: '20220813_014229.jpg',
-        proudness: 7,
-        tags: [],
-        description: ''
+      proudness: 10,
+      tags: ['gouache'],
+      description: 'My wife asked me to paint "an ocean" for her for Puja purposes. I\'ve made reproduction of some painting I found on internet using mostly gouache pain on a canvas.',
+      name: 'Ocean sunset painting',
+      folder: '20230701-ocean-sunset-painting',
+      filename: '20230701_051305.jpg'
     },
     {
-        name: 'Leaf',
-        folder: '20220814-leaf',
-        filename: '20220814_012513.jpg',
-        proudness: 3,
-        tags: [],
-        description: ''
+      proudness: 9,
+      tags: ['color_pencil'],
+      description: 'Rendering of a white rose from our garden using white pencils on a black paper. A4 format.',
+      name: 'White rose',
+      folder: '20230523-white-rose',
+      filename: '20230523_022335.jpg'
     },
     {
-        name: 'Katoomba shop front',
-        folder: '20220815-katoomba-shop-front',
-        filename: '20220815_103541.jpg',
-        proudness: 8,
-        tags: [],
-        description: ''
+      proudness: 8,
+      tags: ['urban_sketching', 'ink', 'markers', 'pencil'],
+      description: 'One of the first urban sketching pieces',
+      name: 'Katoomba shop front',
+      folder: '20220815-katoomba-shop-front',
+      filename: '20220815_103541.jpg'
     },
     {
-        name: 'Church 2',
-        folder: '20220828-church-2',
-        filename: '20220828_010803.jpg',
-        proudness: 8,
-        tags: [],
-        description: ''
+      proudness: 8,
+      tags: ['urban_sketching', 'markers', 'ink', 'pencil'],
+      description: 'I mostly worked from the photo here. A bit exagurated perspective.',
+      name: 'Central Villages Anglican Church, Lawson',
+      folder: '20220828-church-2',
+      filename: '20220828_010803.jpg'
     },
     {
-        name: 'Magpie',
-        folder: '20220917-magpie',
-        filename: '20220917_033513.jpg',
-        proudness: 2,
-        tags: [],
-        description: ''
+      proudness: 8,
+      tags: ['urban_sketching', 'watercolor', 'pencil', 'ink', 'inkwash'],
+      description: 'Done in 2 hours during Blue Mountains urban sketchers meetup.',
+      name: 'Katoomba court',
+      folder: '20230415-Katoomba-court',
+      filename: '20230415_022335.jpg'
     },
     {
-        name: 'Angre goddes (reproduction)',
-        folder: '20221002-furious-got-reproduction',
-        filename: '20221002_045007.jpg',
-        proudness: 6,
-        tags: [],
-        description: 'My wife needed a painting for the puja'
+      proudness: 7,
+      tags: ['urban_sketching', 'ink', 'markers'],
+      description: 'Our local football club house. I tried to make it more curvy barel distortion style.',
+      name: 'Football club house',
+      folder: '20220813-football-club-house',
+      filename: '20220813_014229.jpg'
     },
     {
-        name: 'Stephen house',
-        folder: '20221016-stephen-house',
-        filename: '20221016_071749.jpg',
-        proudness: 2,
-        tags: [],
-        description: ''
+      proudness: 7,
+      tags: ['urban_sketching', 'watercolor', 'ink'],
+      description: '2h urban sketching project with Blue Mountains urban sketchers',
+      name: 'Norman Lindsay studio',
+      folder: '20230819-museum',
+      filename: '20230819_090806.jpg'
     },
     {
-        name: 'Abstract 6',
-        folder: '20221022-abstract-6',
-        filename: '20221022_073727.jpg',
-        proudness: 3,
-        tags: [],
-        description: ''
+      proudness: 7,
+      tags: ['urban_sketching', 'watercolor', 'ink'],
+      description: '2h urban sketching project with Blue Mountains urban sketchers',
+      name: 'Penrith Anglican Church',
+      folder: '20230916-church',
+      filename: '20230916_034803.jpg'
     },
     {
-        name: 'Abstract 5',
-        folder: '20221023-abstract-5',
-        filename: '20221023_050248.jpg',
-        proudness: 3,
-        tags: [],
-        description: ''
+      proudness: 6,
+      tags: ['gouache'],
+      description: 'My wife needed a painting for the puja so I quickly made a reproduction of a painting found on internet.',
+      name: 'Furious Durga reproduction',
+      folder: '20221002-furious-got-reproduction',
+      filename: '20221002_045007.jpg'
     },
     {
-        name: 'Abstract 4',
-        folder: '20221027-abstract-4',
-        filename: '20221027_043234.jpg',
-        proudness: 3,
-        tags: [],
-        description: ''
+      proudness: 6,
+      tags: ['ink', 'markers'],
+      description: 'An evening sketch of George',
+      name: 'Teddy Bears',
+      folder: '20230211-plush-bear-sketch',
+      filename: '20230211_123253.jpg'
     },
     {
-        name: 'Space door',
-        folder: '20221028-space-door',
-        filename: '20221028_030654.jpg',
-        proudness: 3,
-        tags: [],
-        description: ''
+      proudness: 6,
+      tags: ['pencil', 'ink', 'inkwash'],
+      description: 'An evening sketch of a toy I got from a friend fron NZ',
+      name: 'New zealand plush toy',
+      folder: '20230217-new-zeland-toy',
+      filename: '20230217_013800.jpg'
     },
     {
-        name: 'Concept sci-fi vehicle',
-        folder: '20221031-concept-scifi-vehicle',
-        filename: '20221031_095710.jpg',
-        proudness: 4,
-        tags: [],
-        description: ''
+      proudness: 6,
+      tags: [],
+      description: '',
+      name: 'Flower',
+      folder: '20230303-flower',
+      filename: '20230303_044950.jpg'
     },
     {
-        name: 'Stool',
-        folder: '20221102-stool',
-        filename: '20221102_120705.jpg',
-        proudness: 2,
-        tags: [],
-        description: ''
+      proudness: 6,
+      tags: [],
+      description: '',
+      name: 'Library',
+      folder: '20230318-library',
+      filename: '20230318_014457.jpg'
     },
     {
-        name: 'Abstract 3',
-        folder: '20221104-abstract-3',
-        filename: '20221104_103208.jpg',
-        proudness: 4,
-        tags: [],
-        description: ''
+      proudness: 5,
+      tags: [],
+      description: '',
+      name: 'Mountain devil',
+      folder: '20221214-mountain-devil',
+      filename: '20221214_115359.jpg'
     },
     {
-        name: 'Abstract 2',
-        folder: '20221107-abstract-2',
-        filename: '20221107_104949.jpg',
-        proudness: 3,
-        tags: [],
-        description: ''
+      proudness: 5,
+      tags: [],
+      description: '',
+      name: 'Yellow flower',
+      folder: '20230104-yellow-flower',
+      filename: '20230104_062321.jpg'
     },
     {
-        name: 'Abstract 1',
-        folder: '20221118-abstract-1',
-        filename: '20221118_123414.jpg',
-        proudness: 4,
-        tags: [],
-        description: ''
+      proudness: 5,
+      tags: [],
+      description: '',
+      name: 'Bananas',
+      folder: '20230225-bananas',
+      filename: '20230225_110646.jpg'
     },
     {
-        name: 'Tree 1',
-        folder: '20221119-tree-1',
-        filename: '20221119_063741.jpg',
-        proudness: 2,
-        tags: [],
-        description: ''
+      proudness: 5,
+      tags: [],
+      description: '',
+      name: 'Rug',
+      folder: '20230312-rug',
+      filename: '20230312_110426.jpg'
     },
     {
-        name: 'Rose 1',
-        folder: '20221130-rose-1',
-        filename: '20221130_093649.jpg',
-        proudness: 4,
-        tags: [],
-        description: ''
+      proudness: 5,
+      tags: [],
+      description: '',
+      name: 'Pencil sharpener',
+      folder: '20230316-pencil-sharpener',
+      filename: '20230316_120854.jpg'
     },
     {
-        name: 'Church 1',
-        folder: '20221206-church-1',
-        filename: '20221206_013720.jpg',
-        proudness: 4,
-        tags: [],
-        description: ''
+      proudness: 5,
+      tags: [],
+      description: '',
+      name: 'Park cover',
+      folder: '20230326-park-cover',
+      filename: '20230326_073333.jpg'
     },
     {
-        name: 'Concept art bikes',
-        folder: '20221207-concept-art-bikes',
-        filename: '20221207_095450.jpg',
-        proudness: 4,
-        tags: [],
-        description: ''
+      proudness: 5,
+      tags: [],
+      description: '',
+      name: 'Old train crain',
+      folder: '20230409-old-train-crain',
+      filename: '20230409_035220.jpg'
     },
     {
-        name: 'White rose',
-        folder: '20221207-white-rose',
-        filename: '20221207_013013.jpg',
-        proudness: 4,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Mediation room',
+      folder: '20220811-mediation-room',
+      filename: '20220811_023304.jpeg'
     },
     {
-        name: 'Swimming pool',
-        folder: '20221208-swimming-pool',
-        filename: '20221208_074411.jpg',
-        proudness: 2,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Concept scifi vehicle',
+      folder: '20221031-concept-scifi-vehicle',
+      filename: '20221031_095710.jpg'
     },
     {
-        name: 'Mountain devil',
-        folder: '20221214-mountain-devil',
-        filename: '20221214_115359.jpg',
-        proudness: 5,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Abstract 3',
+      folder: '20221104-abstract-3',
+      filename: '20221104_103208.jpg'
     },
     {
-        name: 'Superb fairy wren color pencil',
-        folder: '20221227-superb-fairy-wren-color-pencil',
-        filename: '20221227_033044.jpeg',
-        proudness: 10,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Abstract 1',
+      folder: '20221118-abstract-1',
+      filename: '20221118_123414.jpg'
     },
     {
-        name: 'Old leaf',
-        folder: '20221230_bw-old-leaf',
-        filename: '20221230_083143.jpg',
-        proudness: 1,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Rose 1',
+      folder: '20221130-rose-1',
+      filename: '20221130_093649.jpg'
     },
     {
-        name: 'Magpie face',
-        folder: '20230103-magpie-face',
-        filename: '20230103_023304.jpg',
-        proudness: 4,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Church 1',
+      folder: '20221206-church-1',
+      filename: '20221206_013720.jpg'
     },
     {
-        name: 'Yellow flower',
-        folder: '20230104-yellow-flower',
-        filename: '20230104_062321.jpg',
-        proudness: 5,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Concept art bikes',
+      folder: '20221207-concept-art-bikes',
+      filename: '20221207_095450.jpg'
     },
     {
-        name: 'Tea bag',
-        folder: '20230119-tea-bag',
-        filename: '20230119_103348.jpg',
-        proudness: 2,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'White rose',
+      folder: '20221207-white-rose',
+      filename: '20221207_013013.jpg'
     },
     {
-        name: 'Coffe place 1',
-        folder: '20230203-coffe-place-1',
-        filename: '20230203_124442.jpg',
-        proudness: 3,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Magpie face',
+      folder: '20230103-magpie-face',
+      filename: '20230103_023304.jpg'
     },
     {
-        name: 'Plush bear sketch',
-        folder: '20230211-plush-bear-sketch',
-        filename: '20230211_123253.jpg',
-        proudness: 6,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Hand skech 3',
+      folder: '20230212-hand-skech-3',
+      filename: '20230212_120937.jpg'
     },
     {
-        name: 'Hand skech 3',
-        folder: '20230212-hand-skech-3',
-        filename: '20230212_120937.jpg',
-        proudness: 4,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Hand skech 2',
+      folder: '20230214-hand-skech-2',
+      filename: '20230214_122815.jpg'
     },
     {
-        name: 'Blackberry',
-        folder: '20230213-blackberry',
-        filename: '20230213_081922.jpg',
-        proudness: 3,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Red tool',
+      folder: '20230222-red-tool',
+      filename: '20230222_064905.jpg'
     },
     {
-        name: 'Hand skech 2',
-        folder: '20230214-hand-skech-2',
-        filename: '20230214_122815.jpg',
-        proudness: 4,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Capsicum',
+      folder: '20230223-capsicum',
+      filename: '20230223_104305.jpg'
     },
     {
-        name: 'Hand sketch 1',
-        folder: '20230215-hand-sketch-1',
-        filename: '20230215_124337.jpg',
-        proudness: 3,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Tomato',
+      folder: '20230224-tomato',
+      filename: '20230224_011802.jpg'
     },
     {
-        name: 'Lemon',
-        folder: '20230216-lemon',
-        filename: '20230216_114947.jpg',
-        proudness: 3,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Shoe',
+      folder: '20230226-shoe',
+      filename: '20230226_125337.jpg'
     },
     {
-        name: 'New zeland toy',
-        folder: '20230217-new-zeland-toy',
-        filename: '20230217_013800.jpg',
-        proudness: 6,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Logs',
+      folder: '20230301-logs',
+      filename: '20230301_082448.jpg'
     },
     {
-        name: 'Knife and apple',
-        folder: '20230218-knife-and-apple',
-        filename: '20230218_010137.jpg',
-        proudness: 3,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Cone and an egg',
+      folder: '20230305-cone-and-an-egg',
+      filename: '20230305_121103.jpg'
     },
     {
-        name: 'Museum park sketch',
-        folder: '20230219-museum-park-sketch',
-        filename: '20230219_042250.jpg',
-        proudness: 1,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Rasberries',
+      folder: '20230308-rasberries',
+      filename: '20230308_123001.jpg'
     },
     {
-        name: 'Cover flower',
-        folder: '20230220-cover-flower',
-        filename: '20230220_070403.jpg',
-        proudness: 2,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Broom',
+      folder: '20230310-broom',
+      filename: '20230310_120548.jpg'
     },
     {
-        name: 'Pastry',
-        folder: '20230221-pastry',
-        filename: '20230221_114324.jpg',
-        proudness: 3,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Flower',
+      folder: '20230310-flower',
+      filename: '20230310_111048.jpg'
     },
     {
-        name: 'Red tool',
-        folder: '20230222-red-tool',
-        filename: '20230222_064905.jpg',
-        proudness: 4,
-        tags: [],
-        description: ''
+      proudness: 4,
+      tags: [],
+      description: '',
+      name: 'Library',
+      folder: '20230715-library',
+      filename: '20230715_030116.jpg'
     },
     {
-        name: 'Capsicum',
-        folder: '20230223-capsicum',
-        filename: '20230223_104305.jpg',
-        proudness: 4,
-        tags: [],
-        description: ''
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Leaf',
+      folder: '20220814-leaf',
+      filename: '20220814_012513.jpg'
     },
     {
-        name: 'Tomato',
-        folder: '20230224-tomato',
-        filename: '20230224_011802.jpg',
-        proudness: 4,
-        tags: [],
-        description: ''
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Abstract 6',
+      folder: '20221022-abstract-6',
+      filename: '20221022_073727.jpg'
     },
     {
-        name: 'Bananas',
-        folder: '20230225-bananas',
-        filename: '20230225_110646.jpg',
-        proudness: 5,
-        tags: [],
-        description: ''
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Abstract 5',
+      folder: '20221023-abstract-5',
+      filename: '20221023_050248.jpg'
     },
-
-    
-
-
-
-      {
-        name: 'Shoe',
-        folder: '20230226-shoe',
-        filename: 'PXL_20230226_125337648.jpg',
-        proudness: 4,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Logs',
-        folder: '20230301-logs',
-        filename: 'PXL_20230301_082448120.jpg',
-        proudness: -1,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Eggs',
-        folder: '20230302-eggs',
-        filename: 'PXL_20230302_131631065.jpg',
-        proudness: -1,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Flower',
-        folder: '20230303-flower',
-        filename: 'PXL_20230303_044950724.jpg',
-        proudness: 6,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Cone and an egg',
-        folder: '20230305-cone-and-an-egg',
-        filename: 'PXL_20230305_121103239.jpg',
-        proudness: 4,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Rasberries',
-        folder: '20230308-rasberries',
-        filename: 'PXL_20230308_123001061.jpg',
-        proudness: 4,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Coconut and brass',
-        folder: '20230309-coconut-and-brass',
-        filename: 'PXL_20230309_123100945.jpg',
-        proudness: 3,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Broom',
-        folder: '20230310-broom',
-        filename: 'PXL_20230310_120548528.jpg',
-        proudness: 4,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Flower',
-        folder: '20230310-flower',
-        filename: 'PXL_20230310_231048089.jpg',
-        proudness: 4,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Rug',
-        folder: '20230312-rug',
-        filename: 'PXL_20230312_110426904.jpg',
-        proudness: 5,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Hands',
-        folder: '20230313-hands',
-        filename: 'PXL_20230313_114507883.jpg',
-        proudness: 3,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Legs',
-        folder: '20230314-legs',
-        filename: 'PXL_20230314_110634550.jpg',
-        proudness: 3,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Pencil sharpener',
-        folder: '20230316-pencil-sharpener',
-        filename: 'PXL_20230316_120854297.jpg',
-        proudness: 5,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Library',
-        folder: '20230318-library',
-        filename: 'PXL_20230318_014457175.jpg',
-        proudness: 6,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Lamp',
-        folder: '20230319-lamp',
-        filename: 'PXL_20230319_130658401.jpg',
-        proudness: 3,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Park cover',
-        folder: '20230326-park-cover',
-        filename: 'PXL_20230326_073333074.jpg',
-        proudness: 5,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Log in forest',
-        folder: '20230329-log-in-forest',
-        filename: 'PXL_20230329_055802027.jpg',
-        proudness: 3,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Hands',
-        folder: '20230403-hands',
-        filename: 'PXL_20230403_122741329.jpg',
-        proudness: 2,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Random sketches',
-        folder: '20230403-random-sketches',
-        filename: 'PXL_20230403_003931823.jpg',
-        proudness: 2,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Old train crain',
-        folder: '20230409-old-train-crain',
-        filename: 'PXL_20230409_035220767.jpg',
-        proudness: 5,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Tree',
-        folder: '20230410-tree',
-        filename: 'PXL_20230410_054016008.jpg',
-        proudness: 3,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Cat',
-        folder: '20230412-cat',
-        filename: 'PXL_20230412_093828323.jpg',
-        proudness: 3,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Katoomba court',
-        folder: '20230415-Katoomba-court',
-        filename: 'PXL_20230415_022335148.jpg',
-        proudness: 8,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Katyas kitchen',
-        folder: '20230501-Katyas-kitchen',
-        filename: 'PXL_20230501_094132816.jpg',
-        proudness: 1,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'White rose',
-        folder: '20230523-white-rose',
-        filename: 'PXL_20230523_022335148.jpg',
-        proudness: 9,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Ocean sunset painting',
-        folder: '20230701-ocean-sunset-painting',
-        filename: 'PXL_20230701_051305285.jpg',
-        proudness: 10,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Library',
-        folder: '20230715-library',
-        filename: 'PXL_20230715_030116222.jpg',
-        proudness: 4,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Museum',
-        folder: '20230819-museum',
-        filename: 'PXL_20230819_090806506.jpg',
-        proudness: 7,
-        tags: [],
-        description: ''
-      },
-      {
-        name: 'Church',
-        folder: '20230916-church',
-        filename: 'PXL_20230916_034803898.jpg',
-        proudness: 7,
-        tags: [],
-        description: ''
-      }
-];
+    {
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Abstract 4',
+      folder: '20221027-abstract-4',
+      filename: '20221027_043234.jpg'
+    },
+    {
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Space door',
+      folder: '20221028-space-door',
+      filename: '20221028_030654.jpg'
+    },
+    {
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Abstract 2',
+      folder: '20221107-abstract-2',
+      filename: '20221107_104949.jpg'
+    },
+    {
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Coffe place 1',
+      folder: '20230203-coffe-place-1',
+      filename: '20230203_124442.jpg'
+    },
+    {
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Blackberry',
+      folder: '20230213-blackberry',
+      filename: '20230213_081922.jpg'
+    },
+    {
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Hand sketch 1',
+      folder: '20230215-hand-sketch-1',
+      filename: '20230215_124337.jpg'
+    },
+    {
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Lemon',
+      folder: '20230216-lemon',
+      filename: '20230216_114947.jpg'
+    },
+    {
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Knife and apple',
+      folder: '20230218-knife-and-apple',
+      filename: '20230218_010137.jpg'
+    },
+    {
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Pastry',
+      folder: '20230221-pastry',
+      filename: '20230221_114324.jpg'
+    },
+    {
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Eggs',
+      folder: '20230302-eggs',
+      filename: '20230302_011631.jpg'
+    },
+    {
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Coconut and brass',
+      folder: '20230309-coconut-and-brass',
+      filename: '20230309_123100.jpg'
+    },
+    {
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Hands',
+      folder: '20230313-hands',
+      filename: '20230313_114507.jpg'
+    },
+    {
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Legs',
+      folder: '20230314-legs',
+      filename: '20230314_110634.jpg'
+    },
+    {
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Lamp',
+      folder: '20230319-lamp',
+      filename: '20230319_010658.jpg'
+    },
+    {
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Log in forest',
+      folder: '20230329-log-in-forest',
+      filename: '20230329_055802.jpg'
+    },
+    {
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Tree',
+      folder: '20230410-tree',
+      filename: '20230410_054016.jpg'
+    },
+    {
+      proudness: 3,
+      tags: [],
+      description: '',
+      name: 'Cat',
+      folder: '20230412-cat',
+      filename: '20230412_093828.jpg'
+    },
+    {
+      proudness: 2,
+      tags: [],
+      description: '',
+      name: 'Magpie',
+      folder: '20220917-magpie',
+      filename: '20220917_033513.jpg'
+    },
+    {
+      proudness: 2,
+      tags: [],
+      description: '',
+      name: 'Stephen house',
+      folder: '20221016-stephen-house',
+      filename: '20221016_071749.jpg'
+    },
+    {
+      proudness: 2,
+      tags: [],
+      description: '',
+      name: 'Stool',
+      folder: '20221102-stool',
+      filename: '20221102_120705.jpg'
+    },
+    {
+      proudness: 2,
+      tags: [],
+      description: '',
+      name: 'Tree 1',
+      folder: '20221119-tree-1',
+      filename: '20221119_063741.jpg'
+    },
+    {
+      proudness: 2,
+      tags: [],
+      description: '',
+      name: 'Swimming pool',
+      folder: '20221208-swimming-pool',
+      filename: '20221208_074411.jpg'
+    },
+    {
+      proudness: 2,
+      tags: [],
+      description: '',
+      name: 'Tea bag',
+      folder: '20230119-tea-bag',
+      filename: '20230119_103348.jpg'
+    },
+    {
+      proudness: 2,
+      tags: [],
+      description: '',
+      name: 'Cover flower',
+      folder: '20230220-cover-flower',
+      filename: '20230220_070403.jpg'
+    },
+    {
+      proudness: 2,
+      tags: [],
+      description: '',
+      name: 'Hands',
+      folder: '20230403-hands',
+      filename: '20230403_122741.jpg'
+    },
+    {
+      proudness: 2,
+      tags: [],
+      description: '',
+      name: 'Random sketches',
+      folder: '20230403-random-sketches',
+      filename: '20230403_123931.jpg'
+    },
+    {
+      proudness: 1,
+      tags: [],
+      description: '',
+      name: 'Bw old leaf',
+      folder: '20221230-bw-old-leaf',
+      filename: '20221230_083143.jpg'
+    },
+    {
+      proudness: 1,
+      tags: [],
+      description: '',
+      name: 'Museum park sketch',
+      folder: '20230219-museum-park-sketch',
+      filename: '20230219_042250.jpg'
+    },
+    {
+      proudness: 1,
+      tags: [],
+      description: '',
+      name: 'Katyas kitchen',
+      folder: '20230501-Katyas-kitchen',
+      filename: '20230501_094132.jpg'
+    }
+  ];
