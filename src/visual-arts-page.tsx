@@ -98,7 +98,7 @@ export const VisualArtsPage = () => {
             thumbWidth={70}
             hideBarsDelay={100}
             // toggleThumb={true}
-            thumbnail={true}
+            thumbnail={false}
             allowMediaOverlap={true}
             plugins={[lgThumbnail, lgZoom, lgFullScreen, lgHash, lgVideo]}
         >
