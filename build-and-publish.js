@@ -55,7 +55,10 @@ const publish = async (distPath) => {
         ghpages.publish(
             distPath,
             {
-                repo: 'git@github.com:soswow/portfolio.git'
+                repo: 'git@github.com:soswow/portfolio.git',
+                // Publish Tesla's public key and disable Jekyll so .well-known is served.
+                // Explicit paths avoid shipping unrelated macOS dotfiles from the build folder.
+                src: ['**/*', '.nojekyll', '.well-known/**/*']
             },
             (err) => {
                 if (err) {
